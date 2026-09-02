@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --theme-primary: #e11d48;
+    --theme-secondary: #be123c;
+    --theme-accent: #f43f5e;
+    --theme-bg: #faf8f5;
+    --theme-card-bg: #ffffff;
+    --theme-card-subtle: #f5f2ec;
+    --theme-border: #e7e2d9;
+    --theme-border-highlight: rgba(225, 29, 72, 0.25);
+    --theme-btn-gradient: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+    --theme-btn-hover: linear-gradient(135deg, #be123c 0%, #9f1239 100%);
+    --theme-badge-bg: #fff1f2;
+    --theme-badge-text: #be123c;
+    --theme-glow: rgba(225, 29, 72, 0.18);
+    --theme-text-main: #1c1917;
+    --theme-text-sub: #57534e;
+    --theme-text-muted: #78716c;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #faf8f5;
+    color: #1c1917;
+    line-height: 1.6;
+  }
+}
+
+.font-editorial {
+  font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.font-newsreader {
+  font-family: 'Newsreader', Georgia, serif;
+}
+
+.font-syne {
+  font-family: 'Syne', sans-serif;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(225, 29, 72, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(225, 29, 72, 0.28);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+.editorial-card {
+  background-color: #ffffff;
+  border: 1px solid #e7e2d9;
+  box-shadow: 0 4px 20px -2px rgba(28, 25, 23, 0.05), 0 1px 3px 0 rgba(28, 25, 23, 0.03);
+}
+
+.editorial-btn {
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px 0 rgba(225, 29, 72, 0.28);
+  transition: all 0.2s ease;
+}
+
+.editorial-btn:hover {
+  background: linear-gradient(135deg, #be123c 0%, #9f1239 100%);
+  box-shadow: 0 6px 20px 0 rgba(225, 29, 72, 0.35);
+}
+
+.editorial-badge {
+  background-color: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+}
+
+

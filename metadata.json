@@ -1,0 +1,6 @@
+{
+  "name": "Flame - Love Compatibility & Relationship Reader",
+  "description": "Deterministic relationship compatibility calculator, sharp anxiety-resolving insights, viral Instagram & WhatsApp story cards, and Paystack instant unlock.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
