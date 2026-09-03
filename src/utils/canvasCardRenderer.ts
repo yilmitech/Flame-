@@ -1,4 +1,4 @@
-import { CardAspect, CompatibilityResult, ThemePreset } from '../types';
+import { AnyReadingResult, CardAspect, ThemePreset } from '../types';
 
 interface ThemeColors {
   bgGradient: string[];
@@ -67,6 +67,58 @@ const THEMES: Record<ThemePreset, ThemeColors> = {
     badgeBg: 'rgba(255, 59, 119, 0.2)',
     badgeText: '#FF80AC',
   },
+  emerald: {
+    bgGradient: ['#03140d', '#08261a', '#020a06'],
+    cardBg: 'rgba(9, 36, 25, 0.85)',
+    cardBorder: 'rgba(16, 185, 129, 0.38)',
+    accent: '#10b981',
+    accentLight: '#6ee7b7',
+    textPrimary: '#ffffff',
+    textSecondary: '#a7f3d0',
+    textMuted: '#059669',
+    scoreGlow: 'rgba(16, 185, 129, 0.55)',
+    badgeBg: 'rgba(16, 185, 129, 0.2)',
+    badgeText: '#6ee7b7',
+  },
+  ocean: {
+    bgGradient: ['#03101c', '#082138', '#02080f'],
+    cardBg: 'rgba(8, 33, 56, 0.85)',
+    cardBorder: 'rgba(56, 189, 248, 0.38)',
+    accent: '#38bdf8',
+    accentLight: '#bae6fd',
+    textPrimary: '#ffffff',
+    textSecondary: '#7dd3fc',
+    textMuted: '#0284c7',
+    scoreGlow: 'rgba(56, 189, 248, 0.55)',
+    badgeBg: 'rgba(56, 189, 248, 0.2)',
+    badgeText: '#bae6fd',
+  },
+  crimson: {
+    bgGradient: ['#190408', '#2e0711', '#0d0205'],
+    cardBg: 'rgba(46, 8, 18, 0.85)',
+    cardBorder: 'rgba(244, 63, 94, 0.38)',
+    accent: '#f43f5e',
+    accentLight: '#fecdd3',
+    textPrimary: '#ffffff',
+    textSecondary: '#fda4af',
+    textMuted: '#be123c',
+    scoreGlow: 'rgba(244, 63, 94, 0.55)',
+    badgeBg: 'rgba(244, 63, 94, 0.2)',
+    badgeText: '#fecdd3',
+  },
+  obsidian: {
+    bgGradient: ['#0c0c0d', '#18181b', '#060607'],
+    cardBg: 'rgba(28, 28, 32, 0.88)',
+    cardBorder: 'rgba(255, 255, 255, 0.28)',
+    accent: '#f4f4f5',
+    accentLight: '#ffffff',
+    textPrimary: '#ffffff',
+    textSecondary: '#e4e4e7',
+    textMuted: '#71717a',
+    scoreGlow: 'rgba(255, 255, 255, 0.4)',
+    badgeBg: 'rgba(255, 255, 255, 0.15)',
+    badgeText: '#f4f4f5',
+  },
 };
 
 function wrapText(
@@ -121,7 +173,7 @@ function drawRoundedRect(
 }
 
 export function renderCardToCanvas(
-  result: CompatibilityResult,
+  result: AnyReadingResult,
   aspect: CardAspect = 'story',
   themePreset: ThemePreset = 'midnight'
 ): HTMLCanvasElement {
@@ -173,22 +225,36 @@ export function renderCardToCanvas(
   const padX = 80;
   let cursorY = aspect === 'story' ? 140 : 80;
 
-  // Brand Header
+  // Header Title & Tagline
   ctx.textAlign = 'center';
   ctx.font = '700 32px "Syne", sans-serif';
   ctx.fillStyle = theme.accentLight;
-  ctx.fillText('🔥 FLAME COMPATIBILITY READING', width / 2, cursorY);
 
-  cursorY += 36;
-  ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = theme.textSecondary;
-  ctx.fillText('CONFIDENTIAL PSYCHOLOGICAL MATCH REPORT', width / 2, cursorY);
+  if (result.testType === 'fortune') {
+    ctx.fillText('🔮 FORTUNE TELLER READING', width / 2, cursorY);
+    cursorY += 36;
+    ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = theme.textSecondary;
+    ctx.fillText('PERSONAL CHARACTER & NEAR-FUTURE FORESIGHT', width / 2, cursorY);
+  } else if (result.testType === 'circle') {
+    ctx.fillText('👥 CIRCLE CHECK • PLATONIC & KINSHIP', width / 2, cursorY);
+    cursorY += 36;
+    ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = theme.textSecondary;
+    ctx.fillText(`${result.relationshipType.toUpperCase()} BOND FORENSIC AUDIT`, width / 2, cursorY);
+  } else {
+    ctx.fillText('🔥 FLAME COMPATIBILITY READING', width / 2, cursorY);
+    cursorY += 36;
+    ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';
+    ctx.fillStyle = theme.textSecondary;
+    ctx.fillText('CONFIDENTIAL PSYCHOLOGICAL MATCH REPORT', width / 2, cursorY);
+  }
 
   cursorY += aspect === 'story' ? 70 : 45;
 
-  // Names Card
+  // Names / Subject Box
   const namesBoxWidth = width - padX * 2;
-  const namesBoxHeight = aspect === 'story' ? 140 : 110;
+  const namesBoxHeight = aspect === 'story' ? 146 : 120;
   
   ctx.fillStyle = theme.cardBg;
   drawRoundedRect(ctx, padX, cursorY, namesBoxWidth, namesBoxHeight, 28);
@@ -197,53 +263,72 @@ export function renderCardToCanvas(
   ctx.strokeStyle = theme.cardBorder;
   ctx.stroke();
 
-  // Names Text inside box with dynamic font scaling to ensure names never get cut off
   const namesCenterY = cursorY + namesBoxHeight / 2;
-  const displayNames = `${result.name1}  ❤️  ${result.name2}`;
-  const maxAllowedWidth = namesBoxWidth - 60; // 860px max width inside the card box
-
-  // Determine starting font size
-  const maxFontSize = aspect === 'story' ? 36 : 30;
-  let singleLineFontSize = maxFontSize;
-  ctx.font = `800 ${singleLineFontSize}px "Syne", "Outfit", sans-serif`;
-  let measuredWidth = ctx.measureText(displayNames).width;
-
-  // Scale down dynamically if measured text exceeds available width
-  if (measuredWidth > maxAllowedWidth) {
-    // 4% extra safety buffer prevents clipping on OS font variations
-    singleLineFontSize = Math.floor(maxFontSize * ((maxAllowedWidth * 0.96) / measuredWidth));
-  }
+  const maxAllowedWidth = namesBoxWidth - 60;
 
   ctx.fillStyle = theme.textPrimary;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
 
-  // If singleLineFontSize is at least 22px, render on one sleek centered line
-  if (singleLineFontSize >= 22) {
-    ctx.font = `800 ${singleLineFontSize}px "Syne", "Outfit", sans-serif`;
-    ctx.fillText(displayNames, width / 2, namesCenterY);
-  } else {
-    // If the names are so long that a single line drops below 22px, stack onto two lines cleanly
-    let twoLineSize = aspect === 'story' ? 30 : 24;
-    ctx.font = `800 ${twoLineSize}px "Syne", "Outfit", sans-serif`;
-    const w1 = ctx.measureText(result.name1).width;
-    const w2 = ctx.measureText(`❤️  ${result.name2}`).width;
-    const maxLineW = Math.max(w1, w2);
-    if (maxLineW > maxAllowedWidth) {
-      twoLineSize = Math.max(16, Math.floor(twoLineSize * ((maxAllowedWidth * 0.95) / maxLineW)));
+  if (result.testType === 'fortune') {
+    // Fortune teller: Full Name + Subtitle with adaptive font sizing
+    let nameFontSize = aspect === 'story' ? 38 : 32;
+    ctx.font = `800 ${nameFontSize}px "Syne", "Outfit", sans-serif`;
+    while (ctx.measureText(result.fullName).width > maxAllowedWidth && nameFontSize > 16) {
+      nameFontSize -= 1;
+      ctx.font = `800 ${nameFontSize}px "Syne", "Outfit", sans-serif`;
     }
-    ctx.font = `800 ${twoLineSize}px "Syne", "Outfit", sans-serif`;
-    const lineSpacing = Math.round(twoLineSize * 1.35);
-    ctx.fillText(result.name1, width / 2, namesCenterY - Math.round(lineSpacing * 0.45));
-    ctx.fillText(`❤️  ${result.name2}`, width / 2, namesCenterY + Math.round(lineSpacing * 0.55));
+    ctx.fillText(result.fullName, width / 2, namesCenterY - 14);
+
+    let subFontSize = aspect === 'story' ? 20 : 18;
+    const subText = `Age ${result.age} • ${result.birthMonth} • ${result.zodiacElement.split('(')[0].trim()}`;
+    ctx.font = `600 ${subFontSize}px "Plus Jakarta Sans", sans-serif`;
+    while (ctx.measureText(subText).width > maxAllowedWidth && subFontSize > 13) {
+      subFontSize -= 1;
+      ctx.font = `600 ${subFontSize}px "Plus Jakarta Sans", sans-serif`;
+    }
+    ctx.fillStyle = theme.accentLight;
+    ctx.fillText(subText, width / 2, namesCenterY + 20);
+  } else {
+    const p1 = result.testType === 'circle' ? result.yourName : result.name1;
+    const p2 = result.testType === 'circle' ? result.theirName : result.name2;
+    const icon = result.testType === 'circle' ? '🤝' : '❤️';
+    const displayNames = `${p1}  ${icon}  ${p2}`;
+
+    // Test single line first with progressive font reduction
+    let singleLineFontSize = aspect === 'story' ? 36 : 30;
+    ctx.font = `800 ${singleLineFontSize}px "Syne", "Outfit", sans-serif`;
+    while (ctx.measureText(displayNames).width > maxAllowedWidth && singleLineFontSize > 20) {
+      singleLineFontSize -= 1;
+      ctx.font = `800 ${singleLineFontSize}px "Syne", "Outfit", sans-serif`;
+    }
+
+    if (ctx.measureText(displayNames).width <= maxAllowedWidth && singleLineFontSize >= 20) {
+      // Fits on one line cleanly
+      ctx.fillText(displayNames, width / 2, namesCenterY);
+    } else {
+      // Split into two balanced lines with adaptive font sizing so neither line overflows or clips
+      let twoLineSize = aspect === 'story' ? 28 : 22;
+      ctx.font = `800 ${twoLineSize}px "Syne", "Outfit", sans-serif`;
+      const line2Text = `${icon}  ${p2}`;
+      while (
+        (ctx.measureText(p1).width > maxAllowedWidth || ctx.measureText(line2Text).width > maxAllowedWidth) &&
+        twoLineSize > 14
+      ) {
+        twoLineSize -= 1;
+        ctx.font = `800 ${twoLineSize}px "Syne", "Outfit", sans-serif`;
+      }
+      const lineSpacing = Math.round(twoLineSize * 1.35);
+      ctx.fillText(p1, width / 2, namesCenterY - Math.round(lineSpacing * 0.44));
+      ctx.fillText(line2Text, width / 2, namesCenterY + Math.round(lineSpacing * 0.56));
+    }
   }
 
-  // Reset baseline for subsequent elements
   ctx.textBaseline = 'alphabetic';
+  cursorY += namesBoxHeight + (aspect === 'story' ? 65 : 35);
 
-  cursorY += namesBoxHeight + (aspect === 'story' ? 70 : 40);
 
-  // Big Score Circle / Meter
+  // Big Score Circle / Center Emblem
   const circleRadius = aspect === 'story' ? 140 : 105;
   const centerX = width / 2;
   const centerY = cursorY + circleRadius;
@@ -255,25 +340,55 @@ export function renderCardToCanvas(
   ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
   ctx.stroke();
 
-  // Active Score Ring
-  const startAngle = -Math.PI / 2;
-  const endAngle = startAngle + (Math.PI * 2 * (result.score / 100));
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, circleRadius, startAngle, endAngle);
-  ctx.lineWidth = 16;
-  ctx.lineCap = 'round';
-  ctx.strokeStyle = theme.accent;
-  ctx.stroke();
+  if (result.testType === 'fortune') {
+    // Emblem for fortune teller
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, circleRadius, 0, Math.PI * 2);
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = theme.cardBorder;
+    ctx.stroke();
 
-  // Score text inside
-  ctx.font = '900 82px "Syne", "Outfit", sans-serif';
-  ctx.fillStyle = theme.textPrimary;
-  ctx.fillText(`${result.score}%`, centerX, centerY + 24);
+    ctx.textAlign = 'center';
+    ctx.font = `${aspect === 'story' ? 68 : 52}px "Outfit", sans-serif`;
+    ctx.fillText('🔮', centerX, centerY - 8);
+
+    ctx.font = '800 22px "Syne", sans-serif';
+    ctx.fillStyle = theme.accentLight;
+    ctx.fillText('SOVEREIGN ESSENCE', centerX, centerY + 42);
+  } else {
+    // Active Score Ring for Flame & Circle
+    const scoreVal = result.score;
+    const startAngle = -Math.PI / 2;
+    const endAngle = startAngle + (Math.PI * 2 * (scoreVal / 100));
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, circleRadius, startAngle, endAngle);
+    ctx.lineWidth = 16;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = theme.accent;
+    ctx.stroke();
+
+    ctx.font = '900 82px "Syne", "Outfit", sans-serif';
+    ctx.fillStyle = theme.textPrimary;
+    ctx.fillText(`${scoreVal}%`, centerX, centerY + 24);
+  }
 
   cursorY = centerY + circleRadius + (aspect === 'story' ? 50 : 35);
 
   // Tier Title Badge
-  const tierText = result.tierTitle || 'Soul Resonance Match';
+  let tierText = '';
+  let archText = '';
+
+  if (result.testType === 'fortune') {
+    tierText = `Archetype: ${result.archetype.title}`;
+    archText = result.archetype.essence;
+  } else if (result.testType === 'circle') {
+    tierText = result.tierTitle || 'Kinship Resonance Match';
+    archText = `Bond Archetype: ${result.platonicArchetype.title}`;
+  } else {
+    tierText = result.tierTitle || 'Soul Resonance Match';
+    archText = result.archetype?.title || 'Psychological Dynamic';
+  }
+
   let tierFontSize = aspect === 'story' ? 32 : 26;
   ctx.font = `700 ${tierFontSize}px "Plus Jakarta Sans", sans-serif`;
   const tierW = ctx.measureText(tierText).width;
@@ -285,7 +400,6 @@ export function renderCardToCanvas(
   ctx.fillText(tierText, width / 2, cursorY);
 
   cursorY += 38;
-  const archText = result.archetype?.title || 'Psychological Dynamic';
   let archFontSize = aspect === 'story' ? 24 : 20;
   ctx.font = `500 ${archFontSize}px "Plus Jakarta Sans", sans-serif`;
   const archW = ctx.measureText(archText).width;
@@ -300,7 +414,7 @@ export function renderCardToCanvas(
 
   // The Viral Quote / Teaser Card
   const quoteBoxWidth = width - padX * 2;
-  const quoteBoxHeight = aspect === 'story' ? 330 : 220;
+  const quoteBoxHeight = aspect === 'story' ? 310 : 210;
 
   ctx.fillStyle = theme.cardBg;
   drawRoundedRect(ctx, padX, cursorY, quoteBoxWidth, quoteBoxHeight, 28);
@@ -313,7 +427,8 @@ export function renderCardToCanvas(
   const quoteBadgeY = cursorY + 44;
   ctx.font = '700 22px "Plus Jakarta Sans", sans-serif';
   ctx.fillStyle = theme.badgeText;
-  ctx.fillText('SHARP TRUTH TEASER', width / 2, quoteBadgeY);
+  const badgeTitle = result.testType === 'fortune' ? 'PERSONAL INSIGHT TEASER' : result.testType === 'circle' ? 'BOND DYNAMIC TEASER' : 'SHARP TRUTH TEASER';
+  ctx.fillText(badgeTitle, width / 2, quoteBadgeY);
 
   // Quote body text
   ctx.textAlign = 'center';
@@ -321,57 +436,87 @@ export function renderCardToCanvas(
   ctx.fillStyle = theme.textSecondary;
 
   const quoteStartY = quoteBadgeY + 45;
-  wrapText(ctx, `"${result.freeTeaser || 'Unspoken emotional truth between you two.'}"`, width / 2, quoteStartY, quoteBoxWidth - 60, aspect === 'story' ? 40 : 34);
+  wrapText(ctx, `"${result.freeTeaser || 'Unspoken truth waiting to be uncovered.'}"`, width / 2, quoteStartY, quoteBoxWidth - 60, aspect === 'story' ? 40 : 34);
 
-  cursorY += quoteBoxHeight + (aspect === 'story' ? 60 : 35);
+  cursorY += quoteBoxHeight + (aspect === 'story' ? 50 : 30);
 
-  // Story Mode: Add Metric Bars
+  // Story Mode: Add Metric Bars or Key Foresight Highlights
   if (aspect === 'story') {
-    const metricsStartY = cursorY;
-    const metrics = [
-      { label: 'Chemistry & Passion', val: result.metrics?.physical ?? 85 },
-      { label: 'Emotional Resonance', val: result.metrics?.emotional ?? 80 },
-      { label: 'Communication Balance', val: result.metrics?.conflictResolution ?? 72 },
-      { label: 'Longevity Forecast', val: result.longevity?.score ?? 78 },
-    ];
-
     const barBoxWidth = width - padX * 2;
-    metrics.forEach((m, idx) => {
-      const my = metricsStartY + idx * 62;
-      ctx.textAlign = 'left';
-      ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-      ctx.fillText(m.label, padX + 10, my);
 
-      ctx.textAlign = 'right';
-      ctx.fillStyle = theme.accentLight;
-      ctx.fillText(`${m.val}%`, width - padX - 10, my);
+    if (result.testType === 'fortune') {
+      const highlights = [
+        { label: 'Core Strength', val: result.coreStrength.title },
+        { label: 'Next 3-Month Phase', val: result.nextThreeMonths.phase },
+        { label: 'Hidden Advantage', val: result.hiddenAdvantage.superpower },
+      ];
+      highlights.forEach((h, idx) => {
+        const my = cursorY + idx * 64;
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+        drawRoundedRect(ctx, padX, my, barBoxWidth, 54, 16);
+        ctx.fill();
 
-      // Track
-      const trackY = my + 14;
-      const trackW = barBoxWidth - 20;
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-      drawRoundedRect(ctx, padX + 10, trackY, trackW, 10, 5);
-      ctx.fill();
+        ctx.textAlign = 'left';
+        ctx.font = '600 20px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = theme.textSecondary;
+        ctx.fillText(h.label, padX + 24, my + 34);
 
-      // Fill
-      const fillW = Math.max(12, (trackW * m.val) / 100);
-      ctx.fillStyle = theme.accent;
-      drawRoundedRect(ctx, padX + 10, trackY, fillW, 10, 5);
-      ctx.fill();
-    });
+        ctx.textAlign = 'right';
+        ctx.font = '700 20px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = theme.textPrimary;
+        ctx.fillText(h.val, padX + barBoxWidth - 24, my + 34);
+      });
+      cursorY += 64 * 3;
+    } else {
+      const metrics = result.testType === 'circle'
+        ? [
+            { label: 'Mutual Trust & Loyalty', val: Math.min(99, result.score + 2) },
+            { label: 'Communication Ease', val: Math.min(99, result.score - 4) },
+            { label: 'Shared Values & Chemistry', val: Math.min(99, result.score + 1) },
+            { label: 'Survival Forecast', val: result.survivalForecast.probability },
+          ]
+        : [
+            { label: 'Chemistry & Passion', val: result.metrics?.physical ?? 85 },
+            { label: 'Emotional Resonance', val: result.metrics?.emotional ?? 80 },
+            { label: 'Communication Balance', val: result.metrics?.conflictResolution ?? 72 },
+            { label: 'Longevity Forecast', val: result.longevity?.score ?? 78 },
+          ];
+
+      metrics.forEach((m, idx) => {
+        const my = cursorY + idx * 56;
+        ctx.textAlign = 'left';
+        ctx.font = '600 20px "Plus Jakarta Sans", sans-serif';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        ctx.fillText(m.label, padX + 10, my);
+
+        ctx.textAlign = 'right';
+        ctx.fillStyle = theme.accentLight;
+        ctx.fillText(`${m.val}%`, width - padX - 10, my);
+
+        // Track
+        const trackY = my + 12;
+        const trackW = barBoxWidth - 20;
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        drawRoundedRect(ctx, padX + 10, trackY, trackW, 8, 4);
+        ctx.fill();
+
+        // Fill
+        const fillW = Math.max(12, (trackW * m.val) / 100);
+        ctx.fillStyle = theme.accent;
+        drawRoundedRect(ctx, padX + 10, trackY, fillW, 8, 4);
+        ctx.fill();
+      });
+      cursorY += 56 * 4;
+    }
   }
 
   // Footer Watermark & Call to Action
-  const footerY = height - (aspect === 'story' ? 100 : 50);
+  const footerY = height - (aspect === 'story' ? 55 : 24);
   ctx.textAlign = 'center';
-  ctx.font = '700 24px "Syne", sans-serif';
+  ctx.font = '700 22px "Syne", sans-serif';
   ctx.fillStyle = theme.textPrimary;
-  ctx.fillText('Find your match score at  flame-love.app', width / 2, footerY);
-
-  ctx.font = '500 18px "Plus Jakarta Sans", sans-serif';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-  ctx.fillText('Tag @flame.reading to get featured • Share on WhatsApp & IG Story', width / 2, footerY + 30);
+  const siteUrl = result.testType === 'fortune' ? 'flame-love.app/fortune' : result.testType === 'circle' ? 'flame-love.app/circle' : 'flame-love.app';
+  ctx.fillText(`Find your reading at  ${siteUrl}`, width / 2, footerY);
 
   return canvas;
 }

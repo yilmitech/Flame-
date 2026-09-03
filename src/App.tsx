@@ -6,14 +6,17 @@ import { FreeResultView } from './components/FreeResultView';
 import { PaidFullReportView } from './components/PaidFullReportView';
 import { ShareCardModal } from './components/ShareCardModal';
 import { RecentCouplesTicker } from './components/RecentCouplesTicker';
-import { CompatibilityResult, PaystackConfig } from './types';
+import { AnyReadingResult, BirthMonth, CircleRelationshipType, PaystackConfig, TestType } from './types';
 import { generateCompatibility } from './utils/compatibilityEngine';
+import { generateFortuneTeller } from './utils/fortuneEngine';
+import { generateCircleCheck } from './utils/circleEngine';
 
 const STORAGE_KEY_UNLOCKED = 'flame_unlocked_readings';
 const STORAGE_KEY_PAYSTACK = 'flame_paystack_config';
 
 export default function App() {
-  const [result, setResult] = useState<CompatibilityResult | null>(null);
+  const [activeTab, setActiveTab] = useState<TestType>('flame');
+  const [result, setResult] = useState<AnyReadingResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [unlockedTier, setUnlockedTier] = useState<'standard' | 'vip'>('standard');
@@ -34,19 +37,45 @@ export default function App() {
     };
   });
 
-  // Check URL parameters on mount (?n1=...&n2=...&st=...)
+  // Check URL parameters on mount
   useEffect(() => {
     try {
       const params = new URLSearchParams(window.location.search);
-      const n1 = params.get('n1');
-      const n2 = params.get('n2');
-      const st = params.get('st') || 'Dating';
+      const testType = params.get('type');
 
-      if (n1 && n2) {
-        const c1 = n1.trim().replace(/^@/, '').toLowerCase();
-        const c2 = n2.trim().replace(/^@/, '').toLowerCase();
-        if (c1 && c2 && c1 !== c2) {
-          handleAnalyze(n1, n2, st, false);
+      if (testType === 'fortune') {
+        const fn = params.get('fn');
+        const age = params.get('age');
+        const bm = params.get('bm') as BirthMonth | null;
+        if (fn && age && bm) {
+          setActiveTab('fortune');
+          handleAnalyzeFortune(fn, parseInt(age, 10), bm, false);
+          return;
+        }
+      } else if (testType === 'circle') {
+        const n1 = params.get('n1');
+        const n2 = params.get('n2');
+        const rel = (params.get('rel') || 'Friend') as CircleRelationshipType;
+        if (n1 && n2) {
+          const c1 = n1.trim().replace(/^@/, '').toLowerCase();
+          const c2 = n2.trim().replace(/^@/, '').toLowerCase();
+          if (c1 && c2 && c1 !== c2) {
+            setActiveTab('circle');
+            handleAnalyzeCircle(n1, n2, rel, false);
+            return;
+          }
+        }
+      } else {
+        const n1 = params.get('n1');
+        const n2 = params.get('n2');
+        const st = params.get('st') || 'Dating';
+        if (n1 && n2) {
+          const c1 = n1.trim().replace(/^@/, '').toLowerCase();
+          const c2 = n2.trim().replace(/^@/, '').toLowerCase();
+          if (c1 && c2 && c1 !== c2) {
+            setActiveTab('flame');
+            handleAnalyzeFlame(n1, n2, st, false);
+          }
         }
       }
     } catch (e) {
@@ -67,11 +96,25 @@ export default function App() {
     }
   };
 
-  const handleAnalyze = (name1: string, name2: string, status: string, withDelay = true) => {
+  const syncUnlockState = (computedId: string) => {
+    try {
+      const unlockedMap = JSON.parse(localStorage.getItem(STORAGE_KEY_UNLOCKED) || '{}');
+      if (unlockedMap[computedId]) {
+        setIsUnlocked(true);
+        setUnlockedTier(unlockedMap[computedId].tier || 'standard');
+        setPaymentRef(unlockedMap[computedId].ref || 'PAYSTACK_VERIFIED_RECEIPT');
+      } else {
+        setIsUnlocked(false);
+      }
+    } catch {
+      setIsUnlocked(false);
+    }
+  };
+
+  const handleAnalyzeFlame = (name1: string, name2: string, status: string, withDelay = true) => {
     const clean1 = name1.trim().replace(/^@/, '').toLowerCase();
     const clean2 = name2.trim().replace(/^@/, '').toLowerCase();
 
-    // Prevent identical names from revealing compatibility or teaser
     if (!clean1 || !clean2 || clean1 === clean2) {
       return;
     }
@@ -82,27 +125,56 @@ export default function App() {
         const computed = generateCompatibility(name1, name2, status);
         setResult(computed);
         setIsLoading(false);
-
-        // Check if previously unlocked
-        try {
-          const unlockedMap = JSON.parse(localStorage.getItem(STORAGE_KEY_UNLOCKED) || '{}');
-          if (unlockedMap[computed.id]) {
-            setIsUnlocked(true);
-            setUnlockedTier(unlockedMap[computed.id].tier || 'standard');
-            setPaymentRef(unlockedMap[computed.id].ref || 'FLAME_SAVED_RECEIPT');
-          } else {
-            setIsUnlocked(false);
-          }
-        } catch {
-          setIsUnlocked(false);
-        }
-
+        syncUnlockState(computed.id);
         triggerConfetti();
-      }, 1200);
+      }, 1100);
     } else {
       const computed = generateCompatibility(name1, name2, status);
       setResult(computed);
-      setIsUnlocked(false);
+      syncUnlockState(computed.id);
+    }
+  };
+
+  const handleAnalyzeFortune = (fullName: string, age: number, birthMonth: BirthMonth, withDelay = true) => {
+    if (!fullName.trim() || !age) return;
+
+    if (withDelay) {
+      setIsLoading(true);
+      setTimeout(() => {
+        const computed = generateFortuneTeller(fullName, age, birthMonth);
+        setResult(computed);
+        setIsLoading(false);
+        syncUnlockState(computed.id);
+        triggerConfetti();
+      }, 1100);
+    } else {
+      const computed = generateFortuneTeller(fullName, age, birthMonth);
+      setResult(computed);
+      syncUnlockState(computed.id);
+    }
+  };
+
+  const handleAnalyzeCircle = (yourName: string, theirName: string, rel: CircleRelationshipType, withDelay = true) => {
+    const clean1 = yourName.trim().replace(/^@/, '').toLowerCase();
+    const clean2 = theirName.trim().replace(/^@/, '').toLowerCase();
+
+    if (!clean1 || !clean2 || clean1 === clean2) {
+      return;
+    }
+
+    if (withDelay) {
+      setIsLoading(true);
+      setTimeout(() => {
+        const computed = generateCircleCheck(yourName, theirName, rel);
+        setResult(computed);
+        setIsLoading(false);
+        syncUnlockState(computed.id);
+        triggerConfetti();
+      }, 1100);
+    } else {
+      const computed = generateCircleCheck(yourName, theirName, rel);
+      setResult(computed);
+      syncUnlockState(computed.id);
     }
   };
 
@@ -145,7 +217,11 @@ export default function App() {
       <main className="flex-1 flex flex-col justify-start">
         {!result && (
           <InputHero
-            onAnalyze={(n1, n2, st) => handleAnalyze(n1, n2, st, true)}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            onAnalyzeFlame={(n1, n2, st) => handleAnalyzeFlame(n1, n2, st, true)}
+            onAnalyzeFortune={(fn, age, bm) => handleAnalyzeFortune(fn, age, bm, true)}
+            onAnalyzeCircle={(yn, tn, rel) => handleAnalyzeCircle(yn, tn, rel, true)}
             isLoading={isLoading}
           />
         )}

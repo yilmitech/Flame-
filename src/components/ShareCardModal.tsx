@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CardAspect, CompatibilityResult, ThemePreset } from '../types';
+import { AnyReadingResult, CardAspect, ThemePreset } from '../types';
 import {
   downloadCardImage,
   getCardBlob,
@@ -17,16 +17,20 @@ import {
 } from 'lucide-react';
 
 interface ShareCardModalProps {
-  result: CompatibilityResult;
+  result: AnyReadingResult;
   isOpen: boolean;
   onClose: () => void;
 }
 
 const THEME_OPTIONS: { id: ThemePreset; name: string; color: string }[] = [
-  { id: 'midnight', name: 'Vibrant Magenta', color: '#FF3B77' },
+  { id: 'midnight', name: 'Magenta Glow', color: '#FF3B77' },
   { id: 'cyber', name: 'Cyber Neon', color: '#c084fc' },
-  { id: 'luxury', name: 'Luxury Gold', color: '#FFD166' },
+  { id: 'luxury', name: 'Luxury Gold', color: '#eab308' },
   { id: 'sunset', name: 'Sunset Warmth', color: '#FF80AC' },
+  { id: 'emerald', name: 'Lush Emerald', color: '#10b981' },
+  { id: 'ocean', name: 'Sapphire Ocean', color: '#38bdf8' },
+  { id: 'crimson', name: 'Royal Velvet', color: '#f43f5e' },
+  { id: 'obsidian', name: 'Obsidian Chrome', color: '#e4e4e7' },
 ];
 
 export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, onClose }) => {
@@ -73,6 +77,36 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, 
 
   if (!isOpen) return null;
 
+  const getBaseName = () => {
+    if (result.testType === 'fortune') {
+      return result.fullName.replace(/\s+/g, '-').toLowerCase();
+    }
+    if (result.testType === 'circle') {
+      return `${result.yourName}-${result.theirName}`.replace(/\s+/g, '-').toLowerCase();
+    }
+    return `${result.name1}-${result.name2}`.replace(/\s+/g, '-').toLowerCase();
+  };
+
+  const getShareTitle = () => {
+    if (result.testType === 'fortune') {
+      return `🔮 Fortune Reading for ${result.fullName}`;
+    }
+    if (result.testType === 'circle') {
+      return `👥 ${result.yourName} & ${result.theirName} Circle Check (${result.relationshipType})`;
+    }
+    return `🔥 ${result.name1} & ${result.name2} Compatibility Score`;
+  };
+
+  const getShareText = () => {
+    if (result.testType === 'fortune') {
+      return `🔮 My Fortune Teller archetype is "${result.archetype.title}"! Discover yours: ${window.location.href}`;
+    }
+    if (result.testType === 'circle') {
+      return `👥 ${result.yourName} & ${result.theirName} scored ${result.score}% on Circle Check! Test your friendship bond: ${window.location.href}`;
+    }
+    return `🔥 ${result.name1} & ${result.name2} scored ${result.score}% on Flame! Test your partner: ${window.location.href}`;
+  };
+
   const handleDownload = () => {
     let canvas = canvasRef.current;
     if (!canvas && result) {
@@ -80,16 +114,28 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, 
       canvasRef.current = canvas;
     }
     if (!canvas) return;
-    const filename = `flame-${(result.name1 || 'partner1').toLowerCase()}-${(result.name2 || 'partner2').toLowerCase()}-${aspect}.png`;
+    const filename = `reading-${getBaseName()}-${aspect}.png`;
     downloadCardImage(canvas, filename);
     setStatusNotice('generic_downloaded');
   };
 
   const handleCopyLink = () => {
     const url = new URL(window.location.href);
-    url.searchParams.set('n1', result.name1);
-    url.searchParams.set('n2', result.name2);
-    url.searchParams.set('st', result.relationshipStatus);
+    if (result.testType === 'fortune') {
+      url.searchParams.set('type', 'fortune');
+      url.searchParams.set('fn', result.fullName);
+      url.searchParams.set('age', String(result.age));
+      url.searchParams.set('bm', result.birthMonth);
+    } else if (result.testType === 'circle') {
+      url.searchParams.set('type', 'circle');
+      url.searchParams.set('n1', result.yourName);
+      url.searchParams.set('n2', result.theirName);
+      url.searchParams.set('rel', result.relationshipType);
+    } else {
+      url.searchParams.set('n1', result.name1);
+      url.searchParams.set('n2', result.name2);
+      url.searchParams.set('st', result.relationshipStatus);
+    }
 
     navigator.clipboard.writeText(url.toString()).then(() => {
       setCopiedLink(true);
@@ -110,14 +156,14 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, 
 
     try {
       const blob = await getCardBlob(canvas);
-      const filename = `flame-${(result.name1 || 'partner1').toLowerCase()}-${(result.name2 || 'partner2').toLowerCase()}-score.png`;
+      const filename = `reading-${getBaseName()}-score.png`;
 
       // If browser supports sharing image files (Android Chrome, iOS Safari, etc.)
       if (blob && navigator.canShare && navigator.canShare({ files: [new File([blob], filename, { type: 'image/png' })] })) {
         const file = new File([blob], filename, { type: 'image/png' });
         await navigator.share({
-          title: `${result.name1} & ${result.name2} Compatibility Score`,
-          text: `🔥 ${result.name1} & ${result.name2} scored ${result.score}% on Flame! Test your partner: ${window.location.href}`,
+          title: getShareTitle(),
+          text: getShareText(),
           files: [file],
         });
         setShareSuccess(true);
@@ -177,13 +223,39 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, 
         </div>
 
         {/* Controls: Aspect & Theme */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+        <div className="space-y-4 mb-5">
+          {/* Theme Palette */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <label className="text-[11px] font-bold text-stone-600 uppercase tracking-wider">
+                Card Style Theme
+              </label>
+              <span className="text-[11px] text-stone-400 font-medium">8 aesthetic presets</span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {THEME_OPTIONS.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => setTheme(t.id)}
+                  className={`py-2 px-2.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 cursor-pointer ${
+                    theme === t.id
+                      ? 'bg-rose-50 border-rose-500 text-rose-900 shadow-xs ring-1 ring-rose-300 font-bold'
+                      : 'bg-[#FAF8F5] border-[#E7E2D9] text-stone-600 hover:text-stone-900 hover:bg-stone-50'
+                  }`}
+                >
+                  <span className="w-2.5 h-2.5 rounded-full shrink-0 shadow-xs" style={{ backgroundColor: t.color }} />
+                  <span className="truncate">{t.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Aspect Ratio */}
           <div className="space-y-1.5">
             <label className="text-[11px] font-bold text-stone-600 uppercase tracking-wider">
               Card Dimensions
             </label>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2 max-w-sm">
               <button
                 onClick={() => setAspect('story')}
                 className={`py-2 px-3 rounded-xl text-xs font-bold transition-all border flex items-center justify-center gap-1.5 cursor-pointer ${
@@ -207,29 +279,6 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, 
               </button>
             </div>
           </div>
-
-          {/* Theme Palette */}
-          <div className="space-y-1.5">
-            <label className="text-[11px] font-bold text-stone-600 uppercase tracking-wider">
-              Card Style Theme
-            </label>
-            <div className="grid grid-cols-2 gap-2">
-              {THEME_OPTIONS.map((t) => (
-                <button
-                  key={t.id}
-                  onClick={() => setTheme(t.id)}
-                  className={`py-2 px-2.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 cursor-pointer ${
-                    theme === t.id
-                      ? 'bg-rose-50 border-rose-500 text-rose-900 shadow-xs ring-1 ring-rose-300'
-                      : 'bg-[#FAF8F5] border-[#E7E2D9] text-stone-600 hover:text-stone-900'
-                  }`}
-                >
-                  <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: t.color }} />
-                  <span className="truncate">{t.name}</span>
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Live Canvas Preview Container */}
@@ -237,7 +286,13 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, 
           {previewDataUrl ? (
             <img
               src={previewDataUrl}
-              alt={`${result.name1} & ${result.name2} Compatibility Card`}
+              alt={
+                result.testType === 'fortune'
+                  ? `${result.fullName} Fortune Reading Card`
+                  : result.testType === 'circle'
+                  ? `${result.yourName} & ${result.theirName} Circle Card`
+                  : `${result.name1} & ${result.name2} Compatibility Card`
+              }
               className="w-auto max-w-full h-auto max-h-[52vh] rounded-xl shadow-md border border-[#E7E2D9] object-contain mx-auto transition-all"
             />
           ) : (

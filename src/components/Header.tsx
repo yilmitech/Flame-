@@ -38,8 +38,11 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Live Social Proof Badge & Controls */}
         <div className="flex items-center gap-2 sm:gap-2.5">
           <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#E7E2D9] text-xs text-stone-600 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
-            <span className="font-medium text-stone-800">54,192</span> couples analyzed today
+            <span className="relative flex h-2 w-2 flex-shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600" />
+            </span>
+            <span className="font-medium text-stone-800">54,192</span> matches analyzed today
           </div>
 
           {hasActiveResult && (
