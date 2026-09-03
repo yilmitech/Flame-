@@ -44,23 +44,6 @@ export function initiatePaystackPayment(options: PaystackPaymentOptions) {
 
   const generatedRef = `FLAME_${Date.now()}_${Math.floor(Math.random() * 1000000)}`;
 
-  // Load Paystack script if not already loaded
-  if (!window.PaystackPop && !isSimulated) {
-    const script = document.createElement('script');
-    script.src = 'https://js.paystack.co/v1/inline.js';
-    script.async = true;
-    script.onload = () => {
-      initializePaystackPayment();
-    };
-    script.onerror = () => {
-      if (onError) {
-        onError('Failed to load Paystack. Please check your connection.');
-      }
-    };
-    document.head.appendChild(script);
-    return;
-  }
-
   // If in simulated sandbox mode
   if (isSimulated) {
     console.log('[Paystack] Simulating payment transaction for:', { planName, partnerNames, amountKobo });
@@ -70,10 +53,18 @@ export function initiatePaystackPayment(options: PaystackPaymentOptions) {
     return;
   }
 
-  // If window.PaystackPop is already available
-  if (window.PaystackPop) {
-    initializePaystackPayment();
-  }
+  // Wait for Paystack to be available (loaded from index.html)
+  const waitForPaystack = (attempt = 0) => {
+    if (window.PaystackPop) {
+      initializePaystackPayment();
+    } else if (attempt < 10) {
+      setTimeout(() => waitForPaystack(attempt + 1), 100);
+    } else {
+      if (onError) onError('Paystack failed to load. Please refresh and try again.');
+    }
+  };
+
+  waitForPaystack();
 
   function initializePaystackPayment() {
     if (!window.PaystackPop) {
