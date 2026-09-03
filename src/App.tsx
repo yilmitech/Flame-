@@ -32,8 +32,8 @@ export default function App() {
       // fallback
     }
     return {
-      publicKey: 'pk_test_flame_demo_micro_key',
-      isSimulated: true, // Default to instant simulation mode so previewers can test unlock seamlessly
+      publicKey: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY || 'pk_test_1d2ffab6b4e4642d0f893edb232013808b96b818',
+      isSimulated: false, // Use real Paystack integration with test keys
     };
   });
 
