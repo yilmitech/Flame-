@@ -35,7 +35,7 @@ export function initiatePaystackPayment(options: PaystackPaymentOptions) {
     amountKobo,
     planName,
     partnerNames,
-    publicKey = 'pk_test_default_flame_reading',
+    publicKey = 'pk_test_1d2ffab6b4e4642d0f893edb232013808b96b818',
     isSimulated = false,
     onSuccess,
     onCancel,
@@ -44,8 +44,25 @@ export function initiatePaystackPayment(options: PaystackPaymentOptions) {
 
   const generatedRef = `FLAME_${Date.now()}_${Math.floor(Math.random() * 1000000)}`;
 
-  // If in simulated sandbox mode or if window.PaystackPop is missing
-  if (isSimulated || !window.PaystackPop) {
+  // Load Paystack script if not already loaded
+  if (!window.PaystackPop && !isSimulated) {
+    const script = document.createElement('script');
+    script.src = 'https://js.paystack.co/v1/inline.js';
+    script.async = true;
+    script.onload = () => {
+      initializePaystackPayment();
+    };
+    script.onerror = () => {
+      if (onError) {
+        onError('Failed to load Paystack. Please check your connection.');
+      }
+    };
+    document.head.appendChild(script);
+    return;
+  }
+
+  // If in simulated sandbox mode
+  if (isSimulated) {
     console.log('[Paystack] Simulating payment transaction for:', { planName, partnerNames, amountKobo });
     setTimeout(() => {
       onSuccess(generatedRef);
@@ -53,43 +70,54 @@ export function initiatePaystackPayment(options: PaystackPaymentOptions) {
     return;
   }
 
-  try {
-    const handler = window.PaystackPop.setup({
-      key: publicKey,
-      email: email || 'customer@flame-love.app',
-      amount: amountKobo,
-      currency: 'NGN',
-      ref: generatedRef,
-      metadata: {
-        custom_fields: [
-          {
-            display_name: 'Couples Reading',
-            variable_name: 'couples_reading',
-            value: partnerNames,
-          },
-          {
-            display_name: 'Plan',
-            variable_name: 'plan_tier',
-            value: planName,
-          },
-        ],
-      },
-      callback: function (response) {
-        onSuccess(response.reference || generatedRef);
-      },
-      onClose: function () {
-        if (onCancel) onCancel();
-      },
-    });
+  // If window.PaystackPop is already available
+  if (window.PaystackPop) {
+    initializePaystackPayment();
+  }
 
-    handler.openIframe();
-  } catch (err: unknown) {
-    console.error('[Paystack Popup Error]', err);
-    if (onError) {
-      onError(err instanceof Error ? err.message : 'Unable to initialize Paystack inline modal.');
-    } else {
-      // Fallback to simulated unlock so user isn't stranded
-      onSuccess(generatedRef);
+  function initializePaystackPayment() {
+    if (!window.PaystackPop) {
+      if (onError) onError('Paystack failed to load. Please refresh and try again.');
+      return;
+    }
+
+    try {
+      const handler = window.PaystackPop.setup({
+        key: publicKey,
+        email: email || 'customer@flame-love.app',
+        amount: amountKobo,
+        currency: 'NGN',
+        ref: generatedRef,
+        metadata: {
+          custom_fields: [
+            {
+              display_name: 'Reading Type',
+              variable_name: 'reading_type',
+              value: partnerNames,
+            },
+            {
+              display_name: 'Plan',
+              variable_name: 'plan_tier',
+              value: planName,
+            },
+          ],
+        },
+        callback: function (response) {
+          console.log('[Paystack] Payment successful:', response.reference);
+          onSuccess(response.reference || generatedRef);
+        },
+        onClose: function () {
+          console.log('[Paystack] Payment modal closed without completion');
+          if (onCancel) onCancel();
+        },
+      });
+
+      handler.openIframe();
+    } catch (err: unknown) {
+      console.error('[Paystack Popup Error]', err);
+      if (onError) {
+        onError(err instanceof Error ? err.message : 'Unable to initialize Paystack payment modal.');
+      }
     }
   }
 }
