@@ -232,10 +232,7 @@ export function renderCardToCanvas(
 
   if (result.testType === 'fortune') {
     ctx.fillText('🔮 FORTUNE TELLER READING', width / 2, cursorY);
-    cursorY += 36;
-    ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';
-    ctx.fillStyle = theme.textSecondary;
-    ctx.fillText('PERSONAL CHARACTER & NEAR-FUTURE FORESIGHT', width / 2, cursorY);
+  }
   } else if (result.testType === 'circle') {
     ctx.fillText('👥 CIRCLE CHECK • PLATONIC & KINSHIP', width / 2, cursorY);
     cursorY += 36;
@@ -278,17 +275,7 @@ export function renderCardToCanvas(
       nameFontSize -= 1;
       ctx.font = `800 ${nameFontSize}px "Syne", "Outfit", sans-serif`;
     }
-    ctx.fillText(result.fullName, width / 2, namesCenterY - 14);
-
-    let subFontSize = aspect === 'story' ? 20 : 18;
-    const subText = `Age ${result.age} • ${result.birthMonth} • ${result.zodiacElement.split('(')[0].trim()}`;
-    ctx.font = `600 ${subFontSize}px "Plus Jakarta Sans", sans-serif`;
-    while (ctx.measureText(subText).width > maxAllowedWidth && subFontSize > 13) {
-      subFontSize -= 1;
-      ctx.font = `600 ${subFontSize}px "Plus Jakarta Sans", sans-serif`;
-    }
-    ctx.fillStyle = theme.accentLight;
-    ctx.fillText(subText, width / 2, namesCenterY + 20);
+    ctx.fillText(result.fullName, width / 2, namesCenterY);
   } else {
     const p1 = result.testType === 'circle' ? result.yourName : result.name1;
     const p2 = result.testType === 'circle' ? result.theirName : result.name2;
@@ -399,18 +386,7 @@ export function renderCardToCanvas(
   ctx.fillStyle = theme.accentLight;
   ctx.fillText(tierText, width / 2, cursorY);
 
-  cursorY += 38;
-  let archFontSize = aspect === 'story' ? 24 : 20;
-  ctx.font = `500 ${archFontSize}px "Plus Jakarta Sans", sans-serif`;
-  const archW = ctx.measureText(archText).width;
-  if (archW > width - 160) {
-    archFontSize = Math.floor(archFontSize * ((width - 160) / archW));
-    ctx.font = `500 ${archFontSize}px "Plus Jakarta Sans", sans-serif`;
-  }
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-  ctx.fillText(archText, width / 2, cursorY);
-
-  cursorY += aspect === 'story' ? 65 : 40;
+  cursorY += aspect === 'story' ? 45 : 25;
 
   // The Viral Quote / Teaser Card
   const quoteBoxWidth = width - padX * 2;
