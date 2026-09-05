@@ -111,7 +111,7 @@ export default function App() {
     }
   };
 
-  const handleAnalyzeFlame = (name1: string, name2: string, status: string, withDelay = true) => {
+  const handleAnalyzeFlame = async (name1: string, name2: string, status: string, withDelay = true) => {
     const clean1 = name1.trim().replace(/^@/, '').toLowerCase();
     const clean2 = name2.trim().replace(/^@/, '').toLowerCase();
 
@@ -121,15 +121,15 @@ export default function App() {
 
     if (withDelay) {
       setIsLoading(true);
-      setTimeout(() => {
-        const computed = generateCompatibility(name1, name2, status);
+      setTimeout(async () => {
+        const computed = await generateCompatibility(name1, name2, status);
         setResult(computed);
         setIsLoading(false);
         syncUnlockState(computed.id);
         triggerConfetti();
       }, 1100);
     } else {
-      const computed = generateCompatibility(name1, name2, status);
+      const computed = await generateCompatibility(name1, name2, status);
       setResult(computed);
       syncUnlockState(computed.id);
     }
