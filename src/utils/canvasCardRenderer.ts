@@ -232,7 +232,6 @@ export function renderCardToCanvas(
 
   if (result.testType === 'fortune') {
     ctx.fillText('🔮 FORTUNE TELLER READING', width / 2, cursorY);
-  }
   } else if (result.testType === 'circle') {
     ctx.fillText('👥 CIRCLE CHECK • PLATONIC & KINSHIP', width / 2, cursorY);
     cursorY += 36;
