@@ -248,9 +248,7 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, 
               ))}
             </div>
           </div>
-
-          {/* Aspect Ratio */}
-          
+        </div>
 
         {/* Live Canvas Preview Container */}
         <div className="p-3 rounded-xl bg-stone-100 border border-[#E7E2D9] flex items-center justify-center mb-5 min-h-[300px]">
