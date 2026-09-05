@@ -732,7 +732,7 @@ blindSpot: 'Becoming overly detached when emotional presence is actually needed.
 {
 title: 'Communication Chameleons',
 dynamic: 'Adaptive Expression',
-unspokenRule: 'Both people naturally change their communication approach depending on the other's current emotional state.',
+unspokenRule: 'Both people naturally change their communication approach depending on the others current emotional state.',
 blindSpot: 'Adapting so much that personal needs and authentic reactions become difficult to express.',
 },
 {
