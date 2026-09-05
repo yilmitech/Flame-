@@ -455,7 +455,7 @@ export const RED_FLAGS_POOL = [
   "Defense Stance: Turning every piece of constructive feedback into 'So I guess I'm just a terrible partner'.",
   "Social Validation Disconnect: One wants to keep things private while the other feels unacknowledged without public posting.",
   "Finances & Lifestyle Secrecy: Avoiding uncomfortable talks about money habits and future lifestyle expectations.",
-  "The Escape Hatch Mentality: Keeping emotional distance just in case things don't work out."
+  "The Escape Hatch Mentality: Keeping emotional distance just in case things don't work out.",
   "Silent Punishment: Going cold and distant instead of naming what's actually bothering you.",
   "Comparison Trap: Bringing up an ex's qualities during an unrelated disagreement.",
   "Apology Deflection: Saying sorry just to end the conversation, not because you understand what you did.",
@@ -505,8 +505,7 @@ export const GREEN_FLAGS_POOL = [
   "No Masking Required: You feel zero need to perform, curate your personality, or pretend to be someone else.",
   "Immediate Post-Fight Care: Even after a heated disagreement, you still make sure the other person is fed and safe.",
   "Mutual Ambition Boost: Being around each other makes both of you want to level up your career, health, and finances.",
-  "Banter Resilience: You can roast each other mercilessly without anyone getting insecure or offended."
-  
+  "Banter Resilience: You can roast each other mercilessly without anyone getting insecure or offended.",
   "Consistent Follow-Through: They do what they say they'll do, even the small things.",
   "Comfortable Silence: You can sit together without talking and it never feels awkward.",
   "Repair After Rupture: After a disagreement, you both actively work to reconnect instead of just moving on.",
@@ -629,7 +628,7 @@ export const UNCOMFORTABLE_TRUTHS = [
   "The argument you had last week wasn't about what you claimed it was; it was about whether you still prioritize each other.",
   "One of you is waiting for a magical moment of certainty that only comes after choosing to commit, not before.",
   "You test each other with silence because asking for reassurance feels too vulnerable for your ego.",
-  "You are both terrified that if you show 100% of your real weird self, the romance will lose its mystique."
+  "You are both terrified that if you show 100% of your real weird self, the romance will lose its mystique.",
   "You've both quietly rehearsed the breakup conversation at least once, even if you'd never admit it.",
   "The version of you that shows up during arguments is not the version either of you fell for.",
   "You forgive faster than you actually heal, so the same wound keeps reopening in new disguises.",
@@ -658,7 +657,7 @@ export const GOLDEN_RULES = [
   "Assume positive intent. They didn't forget your text to hurt you; they just got distracted. Stop treating your partner like a defendant.",
   "Give what you secretly want to receive. If you want more appreciation, compliment them first without keeping score.",
   "Protect the relationship from outside opinions. What happens between you two stays between you two unless abuse is present.",
-  "Schedule weekly zero-phone decompression check-ins. 15 minutes of uninterrupted presence saves 15 months of confusion."
+  "Schedule weekly zero-phone decompression check-ins. 15 minutes of uninterrupted presence saves 15 months of confusion.",
   "Repair matters more than winning. You can be right and still lose the relationship if being right becomes the goal.",
   "State your needs before you're resentful. Silent sacrifice usually turns into silent bitterness eventually.",
   "Fight the problem, not the person. 'You always' and 'you never' turn a fixable issue into a character attack.",
