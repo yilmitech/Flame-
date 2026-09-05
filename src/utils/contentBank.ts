@@ -68,7 +68,7 @@ export const ANXIETY_HOOKS = [
   "The exact unsaid conversation you two are currently avoiding",
   "Discover the hidden loyalty test one of you is secretly running",
   "See why your communication completely crashes during arguments",
-  "The subconscious fear that makes this connection feel exhausting"
+  "The subconscious fear that makes this connection feel exhausting",
    "See which one of you is more likely to walk away first",
   "The one thing they've never told you about your last fight",
   "Discover who's actually more invested in this relationship",
