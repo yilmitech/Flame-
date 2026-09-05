@@ -837,9 +837,7 @@ dynamic: 'Ongoing Life Narration',
 unspokenRule: 'Both people naturally keep each other updated about the little developments that make up everyday life.',
 blindSpot: 'Feeling obligated to report every detail instead of allowing independent experiences.',
 },
-{
-title: 'Mutual Emotional Back
-
+];
 const FRICTION_POINTS = [
   {
     title: 'Unexpressed Expectations & The Initiation Asymmetry',
