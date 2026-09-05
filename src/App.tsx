@@ -121,8 +121,8 @@ export default function App() {
 
     if (withDelay) {
       setIsLoading(true);
-      setTimeout(() => {
-        const computed = generateCompatibility(name1, name2, status);
+      setTimeout(async() => {
+        const computed = await generateCompatibility(name1, name2, status);
         setResult(computed);
         setIsLoading(false);
         syncUnlockState(computed.id);
