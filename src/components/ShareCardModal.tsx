@@ -11,7 +11,6 @@ import {
   Share2,
   Check,
   Copy,
-  Smartphone,
   Sparkles,
   MessageCircle,
 } from 'lucide-react';
@@ -34,7 +33,7 @@ const THEME_OPTIONS: { id: ThemePreset; name: string; color: string }[] = [
 ];
 
 export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, onClose }) => {
-  const [aspect, setAspect] = useState<CardAspect>('story');
+  const [aspect, setAspect] = useState<CardAspect>('square');
   const [theme, setTheme] = useState<ThemePreset>('midnight');
   const [copiedLink, setCopiedLink] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -251,35 +250,7 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({ result, isOpen, 
           </div>
 
           {/* Aspect Ratio */}
-          <div className="space-y-1.5">
-            <label className="text-[11px] font-bold text-stone-600 uppercase tracking-wider">
-              Card Dimensions
-            </label>
-            <div className="grid grid-cols-2 gap-2 max-w-sm">
-              <button
-                onClick={() => setAspect('story')}
-                className={`py-2 px-3 rounded-xl text-xs font-bold transition-all border flex items-center justify-center gap-1.5 cursor-pointer ${
-                  aspect === 'story'
-                    ? 'bg-rose-50 border-rose-500 text-rose-800 ring-1 ring-rose-400'
-                    : 'bg-[#FAF8F5] border-[#E7E2D9] text-stone-600 hover:text-stone-900'
-                }`}
-              >
-                <Smartphone className="w-3.5 h-3.5" />
-                <span>Story (9:16)</span>
-              </button>
-              <button
-                onClick={() => setAspect('square')}
-                className={`py-2 px-3 rounded-xl text-xs font-bold transition-all border flex items-center justify-center gap-1.5 cursor-pointer ${
-                  aspect === 'square'
-                    ? 'bg-rose-50 border-rose-500 text-rose-800 ring-1 ring-rose-400'
-                    : 'bg-[#FAF8F5] border-[#E7E2D9] text-stone-600 hover:text-stone-900'
-                }`}
-              >
-                <span>Square (1:1)</span>
-              </button>
-            </div>
-          </div>
-        </div>
+          
 
         {/* Live Canvas Preview Container */}
         <div className="p-3 rounded-xl bg-stone-100 border border-[#E7E2D9] flex items-center justify-center mb-5 min-h-[300px]">
