@@ -238,7 +238,7 @@ const CORE_STRENGTHS = [
   {
     title: 'Uncompromised Aesthetic & Quality Standards',
     explanation: 'You possess an internal bar for quality that you refuse to lower, regardless of deadlines or external pressure. Excellence is a personal habit.',
-    manifestatingsignificance.' },
+    },
   { title: 'The Horizon Voyager', essence: 'Relentless Quest for Personal Sovereignty', description: 'You are fundamentally motivated by freedom. Every strategic decision you make is designed to expand your personal agency and self-determination.' }
 
 ];
