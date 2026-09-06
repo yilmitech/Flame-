@@ -27,20 +27,7 @@ function createPRNG(seed: number) {
 // If you already have a real zodiac/element mapping elsewhere in the codebase,
 // delete this block and import it instead — this is a placeholder so the
 // feature actually varies by birth month in the meantime.
-const ZODIAC_ELEMENTS: Record<string, string> = {
-  january: 'Earth Current & Garnet Resolve',
-  february: 'Air Current & Amethyst Vision',
-  march: 'Water Current & Aquamarine Flow',
-  april: 'Fire Current & Diamond Drive',
-  may: 'Earth Current & Emerald Steadiness',
-  june: 'Air Current & Pearl Duality',
-  july: 'Water Current & Ruby Depth',
-  august: 'Fire Current & Peridot Radiance',
-  september: 'Earth Current & Sapphire Precision',
-  october: 'Air Current & Opal Balance',
-  november: 'Water Current & Topaz Intensity',
-  december: 'Fire Current & Turquoise Expansion',
-};
+
 
 // 1. STABLE TRAITS POOL (Consistent for same Name + Age + Month)
 // NOTE: every pool below previously had its first several entries pasted a
