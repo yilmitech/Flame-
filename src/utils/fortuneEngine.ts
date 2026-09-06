@@ -20,7 +20,34 @@ function createPRNG(seed: number) {
   };
 }
 
+// FIX: ZODIAC_ELEMENTS was referenced in generateFortuneTellerReading() but never
+// defined or imported anywhere in this file, so every reading either threw a
+// ReferenceError or (if wrapped in a try/catch upstream) silently fell back to
+// the same 'Solar Quartz & Astral Current' string for every single user.
+// If you already have a real zodiac/element mapping elsewhere in the codebase,
+// delete this block and import it instead — this is a placeholder so the
+// feature actually varies by birth month in the meantime.
+const ZODIAC_ELEMENTS: Record<string, string> = {
+  january: 'Earth Current & Garnet Resolve',
+  february: 'Air Current & Amethyst Vision',
+  march: 'Water Current & Aquamarine Flow',
+  april: 'Fire Current & Diamond Drive',
+  may: 'Earth Current & Emerald Steadiness',
+  june: 'Air Current & Pearl Duality',
+  july: 'Water Current & Ruby Depth',
+  august: 'Fire Current & Peridot Radiance',
+  september: 'Earth Current & Sapphire Precision',
+  october: 'Air Current & Opal Balance',
+  november: 'Water Current & Topaz Intensity',
+  december: 'Fire Current & Turquoise Expansion',
+};
+
 // 1. STABLE TRAITS POOL (Consistent for same Name + Age + Month)
+// NOTE: every pool below previously had its first several entries pasted a
+// second time later in the array. That gave those entries roughly 2x the
+// selection probability of everything else, which is why the same handful
+// of archetypes/teasers/strengths kept showing up. All duplicate blocks have
+// been removed so every entry in every pool has equal odds.
 const FORTUNE_ARCHETYPES = [
   {
     title: 'The Silent Catalyst',
@@ -68,12 +95,6 @@ const FORTUNE_ARCHETYPES = [
   { title: "The Silent Ledger", essence: "Exact Internal Accounting of Trust", description: "You keep precise, unspoken track of who has earned your confidence and who hasn't. This internal record protects you from repeating costly misjudgments." },
   { title: "The Undeterred Cultivator", essence: "Long-Season Patience with Growth", description: "You plant things — ideas, relationships, skills — that take years to bear fruit, and you tend them without needing an audience to witness the process." },
   { title: "The Calibrated Risk-Taker", essence: "Bold Moves Backed by Quiet Preparation", description: "What looks like fearless spontaneity to others is actually the result of preparation nobody saw. You leap only after quietly building the net." },
-  { title: 'The Serene Catalyst', essence: 'Quiet Strategic Magnetism', description: 'You possess an unusual ability to anchor a room without raising your voice. People subconsciously bring their true intentions to you because your presence makes performative behavior feel unnecessary.' },
-  { title: 'The Resilient Sovereign', essence: 'Self-Forged Authority & Dignity', description: 'You were tested early and learned to build your own emotional sovereignty. You do not panic under pressure because you have already survived storms that would have dismantled softer foundations.' },
-  { title: 'The Visionary Anchor', essence: 'Grounded Long-Term Foresight', description: 'While others react to current noise, you instinctively plan 18 months ahead. Your intuition is not random guesswork; it is high-speed pattern recognition wrapped in patient self-trust.' },
-  { title: 'The Alchemical Empath', essence: 'Emotional Intelligence with Teeth', description: 'You read rooms in milliseconds, detecting micro-shifts in tone before words are spoken. Your superpower is warmth backed by ironclad boundaries when someone attempts to take advantage.' },
-  { title: 'The Unflinching Innovator', essence: 'Relentless High-Velocity Execution', description: 'You despise stagnation and artificial bureaucracy. When you commit your mind to an idea, your follow-through leaves spectators wondering where you found the quiet momentum.' },
-  { title: 'The Harmonic Strategist', essence: 'Tactical Grace & Unshakable Poise', description: 'You know how to win battles without creating unnecessary enemies. You negotiate with diplomacy, but you never confuse kindness with yielding on your non-negotiables.' },
   { title: 'The Unseen Architect', essence: 'Structural Genius & Quiet Systemic Impact', description: 'You design systems, boundaries, and habits that endure long after initial enthusiasm fades. Your legacy is built on quiet foundations that withstand volatile conditions.' },
   { title: 'The Obsidian Sentinel', essence: 'Uncompromising Loyalty & Shielded Power', description: 'You protect your inner circle with formidable fierceness. You hold a calm, formidable center that deters disingenuous actors before they can take root.' },
   { title: 'The Quantum Pragmatist', essence: 'Rooted Idealism & Operational Precision', description: 'You bridge high-minded visions with practical execution. You do not waste time on idealism without blueprints; you make abstract dreams tangibly real.' },
@@ -87,6 +108,150 @@ const FORTUNE_ARCHETYPES = [
   { title: 'The Perpetual Alchemist', essence: 'Transmutation of Scarcity into Abundance', description: 'You excel at taking limited resources and compounding them into significant assets. You see opportunity where others see structural deficits.' },
   { title: 'The Stoic Beacon', essence: 'Unshakeable Stability in Volatile Environments', description: 'When market or situational turbulence shakes those around you, your composure becomes the reference point others rely on to recalibrate.' },
   { title: 'The Silent Originator', essence: 'Generative Creativity Without Ego', description: 'You care more about the impact of your work than who gets immediate praise. This lack of ego allows you to create work of lasting significance.' },
+  { title: 'The Horizon Voyager', essence: 'Relentless Quest for Personal Sovereignty', description: 'You are fundamentally motivated by freedom. Every strategic decision you make is designed to expand your personal agency and self-determination.' }
+];
+
+const FREE_TEASERS = [
+  '✨ Personal Spark: People remember the specific way you made them feel seen years after a 5-minute conversation with you.',
+  '✨ Instinctive Shield: You have a radar for concealed motives that has silently saved you from at least three catastrophic traps.',
+  '✨ Rare Magnetism: The dreams you keep quietest are the exact ones that will redefine your next life milestone.',
+  '✨ Latent Velocity: You are standing in the final incubation phase of an ambition that others doubted you could pull off.',
+  '✨ Quiet Distinction: Your biggest competitive advantage has always been your composure when everyone else is reacting impulsively.',
+  '✨ Soul Integrity: You refuse to pretend to like things or people to fit in — and that quiet refusal is why high-value peers respect you.',
+  "✨ Silent Ledger: You remember exactly who showed up for you and who didn't, even if you've never once brought it up.",
+  "✨ Patient Root: A skill you've been quietly building for over a year is about to become visibly undeniable to others.",
+  "✨ Calibrated Instinct: The hesitation you felt about a recent decision was your intuition doing its job, not weakness.",
+  "✨ Threshold Discipline: The boundary you set without explanation months ago is the exact reason your peace has held steady since.",
+  "✨ Undersold Talent: You are better at something than you currently give yourself credit for, and it's about to be tested publicly.",
+  "✨ Quiet Cartography: You already know the way forward on something you've been pretending to be uncertain about.",
+  "✨ Ember Discipline: The thing you almost gave up on last year is closer to paying off than you currently believe.",
+  "✨ Reluctant Clarity: You saw a pattern in someone's behavior early and were right to trust that read.",
+  "✨ Velvet Boundary: Your calm way of saying no has quietly earned you more respect than any argument could have.",
+  '✨ Perceptive Depth: You often grasp the real dynamic in a room before anyone else finishes their opening sentence.',
+  '✨ Strategic restraint: Your decision to remain silent in a past negotiation gave you leverage you still benefit from today.',
+  '✨ Unspoken Gravity: People instinctively look to your face for reactions during moments of sudden uncertainty.',
+  '✨ Unseen Alignment: An idea you abandoned months ago is about to intersect with a new opportunity in a lucrative way.',
+  '✨ Precise Compass: Your gut instinct regarding a specific individual was proven entirely correct, validating your intuition.',
+  '✨ Quiet Dominance: You do not need to win arguments when your steady results consistently settle the debate.',
+  '✨ Subtle Radiance: Your true strength shows in how quickly you reset after unexpected setbacks.',
+  '✨ Protected Peace: Your recent decision to tighten your inner circle has instantly elevated your mental clarity.',
+  '✨ Sovereign Orbit: You attract higher-caliber opportunities simply by refusing to chase low-value validation.',
+  '✨ Calibrated Focus: A major distraction that slowed you down last year no longer has any pull over your mind.',
+  '✨ Unmatched Discipline: The quiet routines you maintain behind closed doors are preparing you for a swift public ascent.',
+  '✨ Deep Authenticity: People trust your endorsement because they know you never lend your name to something insincere.',
+  '✨ Incisive Wisdom: You have learned to distinguish between temporary discomfort and true misalignment.',
+  '✨ Enduring Presence: Long after a project ends, partners remember your calm reliability over louder contributors.'
+];
+
+const CORE_STRENGTHS = [
+  {
+    title: 'Adaptive Composure Under Fire',
+    explanation:
+      'When chaos erupts, your nervous system does not crash; it narrows its focus onto the single highest-leverage solution. Where others exhaust energy complaining, you quietly rearrange reality.',
+    manifestation: 'You become clearest when the stakes are highest.',
+  },
+  {
+    title: 'Radical Discernment of Character',
+    explanation:
+      'You catch inconsistencies between people’s words and their micro-expressions instantly. You give grace easily, but you store behavioral receipts with photographic memory.',
+    manifestation: 'You are almost impossible to manipulate twice.',
+  },
+  {
+    title: 'Compound Willpower & Self-Sovereignty',
+    explanation:
+      'You do not rely on transient hype or external cheerleaders. Once you decide something belongs in your future, you execute behind closed doors until the outcome speaks for itself.',
+    manifestation: 'Your quiet discipline consistently outperforms noisy talent.',
+  },
+  {
+    title: 'Uncommon Emotional Generosity with Boundaries',
+    explanation:
+      'You give your energy deeply to those in your inner ring without sacrificing your own self-respect. You have mastered the rare art of saying no without guilt or explanation.',
+    manifestation: 'Your loyalty is priceless because it cannot be bought or faked.',
+  },
+  {
+    title: "Calibrated Risk Tolerance",
+    explanation: "You distinguish clearly between reckless gambles and calculated leaps. This clarity lets you move boldly where others freeze, without ever betting more than you can actually absorb losing.",
+    manifestation: "You take the risks others are too cautious for, and skip the ones they foolishly take."
+  },
+  {
+    title: "Patient Skill Compounding",
+    explanation: "You treat mastery as a long game, adding small deliberate improvements consistently rather than chasing dramatic overnight leaps.",
+    manifestation: "Your skill level quietly surpasses louder, faster-moving peers over time."
+  },
+  {
+    title: "Diplomatic Bluntness",
+    explanation: "You deliver hard truths without cruelty, choosing precise honest language over either flattery or harshness.",
+    manifestation: "People trust your feedback because it is both kind and completely reliable."
+  },
+  {
+    title: "Structural Foresight",
+    explanation: "You build with the next five years in mind, not just the current quarter, avoiding the short-term traps others fall into.",
+    manifestation: "Your foundations rarely need to be rebuilt from scratch."
+  },
+  {
+    title: "Selective Transparency",
+    explanation: "You share exactly enough to build trust without exposing your full strategy, protecting your leverage while still appearing open.",
+    manifestation: "People feel informed by you without ever seeing your whole hand."
+  },
+  {
+    title: "Low-Reactivity Under Provocation",
+    explanation: "Attempts to bait you into impulsive reactions rarely land, because your responses come from calculation rather than adrenaline.",
+    manifestation: "You are exceptionally difficult to manipulate through emotional pressure."
+  },
+  {
+    title: "Cross-Domain Pattern Transfer",
+    explanation: "You apply lessons learned in one area of life directly to unrelated problems, accelerating your learning curve everywhere at once.",
+    manifestation: "You solve new problems faster because you've quietly solved their shape before."
+  },
+  {
+    title: "Deliberate Energy Budgeting",
+    explanation: "You treat your attention and energy like a finite currency, refusing to overspend it on situations that don't return proportional value.",
+    manifestation: "You rarely experience the burnout that consumes less selective people."
+  },
+  {
+    title: "Grounded Confidence Without Bravado",
+    explanation: "Your self-assurance doesn't need an audience to validate it, so you never feel compelled to perform certainty you don't feel.",
+    manifestation: "People sense your competence without needing you to announce it."
+  },
+  {
+    title: "Recovery-Oriented Problem Solving",
+    explanation: "When plans fail, you move immediately to salvage and adaptation instead of dwelling on the failure itself.",
+    manifestation: "You lose far less time to setbacks than most people around you."
+  },
+  {
+    title: 'Surgical Focus in High-Noise Environments',
+    explanation: 'You can tune out widespread panic, surface noise, and irrelevant commentary to isolate core leverage points. Your mind filters out trivia automatically.',
+    manifestation: 'You execute with clarity while others are distracted.'
+  },
+  {
+    title: 'Rapid Systemic Synthesis',
+    explanation: 'You absorb complex, disorganized information and synthesize it into executable strategies faster than most can analyze the problem.',
+    manifestation: 'You turn chaos into order effortlessly.'
+  },
+  {
+    title: 'Unshakable Personal Accountability',
+    explanation: 'You take total responsibility for your environment and outcomes. You refuse victim narratives, which gives you complete agency over your direction.',
+    manifestation: 'You possess complete personal agency.'
+  },
+  {
+    title: 'High-Fidelity Emotional Recalibration',
+    explanation: 'When hit with unexpected disappointment, you process the emotion swiftly, learn the structural lesson, and return to effective action without lingering resentment.',
+    manifestation: 'Your downtime after setbacks is exceptionally brief.'
+  },
+  {
+    title: 'Quiet Strategic Patience',
+    explanation: 'You understand the compound growth of silent effort. You are content to work without recognition today because you know the structural result will be undeniable tomorrow.',
+    manifestation: 'You play long-term games while others chase short-term applause.'
+  },
+  {
+    title: 'Intuitive Negotiation & Alignment',
+    explanation: 'You locate shared incentives instantly. You secure outcomes where all parties feel respected while firmly securing your strategic objectives.',
+    manifestation: 'You achieve win-win outcomes without compromising your standards.'
+  },
+  {
+    title: 'Uncompromised Aesthetic & Quality Standards',
+    explanation: 'You possess an internal bar for quality that you refuse to lower, regardless of deadlines or external pressure. Excellence is a personal habit.',
+    manifestatingsignificance.' },
   { title: 'The Horizon Voyager', essence: 'Relentless Quest for Personal Sovereignty', description: 'You are fundamentally motivated by freedom. Every strategic decision you make is designed to expand your personal agency and self-determination.' }
 
 ];
