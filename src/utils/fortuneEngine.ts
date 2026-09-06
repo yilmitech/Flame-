@@ -87,7 +87,7 @@ const FREE_TEASERS = [
   "✨ Ember Discipline: The thing you almost gave up on last year is closer to paying off than you currently believe.",
   "✨ Reluctant Clarity: You saw a pattern in someone's behavior early and were right to trust that read.",
   "✨ Velvet Boundary: Your calm way of saying no has quietly earned you more respect than any argument could have.",
-  "✨ Salvage
+  "✨ Salvage.",
 ];
 
 const CORE_STRENGTHS = [
