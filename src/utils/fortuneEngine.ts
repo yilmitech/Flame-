@@ -1013,7 +1013,7 @@ export const WHAT_TOMORROW_HOLDS_POOL = [
   'A brief interaction with a stranger leaves you with a warm, grounded energy.',
   'Your focus will lock in effortlessly today, allowing you to complete meaningful deep work.',
   'A boundary you hold firmly today will earn you lasting respect from key peers.',
-  'You will enjoy a peaceful night of deep rest, knowing you managed your day with balance.'
+  'You will enjoy a peaceful night of deep rest, knowing you managed your day with balance.',
   "A conversation you've been avoiding will feel far easier once you actually start it.",
   "Something you organized quietly last week will make today noticeably smoother.",
   "You will feel less need to justify a choice that others questioned earlier.",
