@@ -68,7 +68,27 @@ const FORTUNE_ARCHETYPES = [
   { title: "The Silent Ledger", essence: "Exact Internal Accounting of Trust", description: "You keep precise, unspoken track of who has earned your confidence and who hasn't. This internal record protects you from repeating costly misjudgments." },
   { title: "The Undeterred Cultivator", essence: "Long-Season Patience with Growth", description: "You plant things — ideas, relationships, skills — that take years to bear fruit, and you tend them without needing an audience to witness the process." },
   { title: "The Calibrated Risk-Taker", essence: "Bold Moves Backed by Quiet Preparation", description: "What looks like fearless spontaneity to others is actually the result of preparation nobody saw. You leap only after quietly building the net." },
-  
+  { title: 'The Serene Catalyst', essence: 'Quiet Strategic Magnetism', description: 'You possess an unusual ability to anchor a room without raising your voice. People subconsciously bring their true intentions to you because your presence makes performative behavior feel unnecessary.' },
+  { title: 'The Resilient Sovereign', essence: 'Self-Forged Authority & Dignity', description: 'You were tested early and learned to build your own emotional sovereignty. You do not panic under pressure because you have already survived storms that would have dismantled softer foundations.' },
+  { title: 'The Visionary Anchor', essence: 'Grounded Long-Term Foresight', description: 'While others react to current noise, you instinctively plan 18 months ahead. Your intuition is not random guesswork; it is high-speed pattern recognition wrapped in patient self-trust.' },
+  { title: 'The Alchemical Empath', essence: 'Emotional Intelligence with Teeth', description: 'You read rooms in milliseconds, detecting micro-shifts in tone before words are spoken. Your superpower is warmth backed by ironclad boundaries when someone attempts to take advantage.' },
+  { title: 'The Unflinching Innovator', essence: 'Relentless High-Velocity Execution', description: 'You despise stagnation and artificial bureaucracy. When you commit your mind to an idea, your follow-through leaves spectators wondering where you found the quiet momentum.' },
+  { title: 'The Harmonic Strategist', essence: 'Tactical Grace & Unshakable Poise', description: 'You know how to win battles without creating unnecessary enemies. You negotiate with diplomacy, but you never confuse kindness with yielding on your non-negotiables.' },
+  { title: 'The Unseen Architect', essence: 'Structural Genius & Quiet Systemic Impact', description: 'You design systems, boundaries, and habits that endure long after initial enthusiasm fades. Your legacy is built on quiet foundations that withstand volatile conditions.' },
+  { title: 'The Obsidian Sentinel', essence: 'Uncompromising Loyalty & Shielded Power', description: 'You protect your inner circle with formidable fierceness. You hold a calm, formidable center that deters disingenuous actors before they can take root.' },
+  { title: 'The Quantum Pragmatist', essence: 'Rooted Idealism & Operational Precision', description: 'You bridge high-minded visions with practical execution. You do not waste time on idealism without blueprints; you make abstract dreams tangibly real.' },
+  { title: 'The Luminous Renegade', essence: 'Quiet Non-Conformity & Authentic Pathfinding', description: 'You refuse to follow inherited scripts simply because they are familiar. You blaze distinct trails with steady dignity rather than performative rebellion.' },
+  { title: 'The Sovereign Mediator', essence: 'Equanimous Judgment & Deep Perspective', description: 'You bring clarity to complex conflicts by seeing past emotional distortion. People rely on your objective judgment when narrative noise overwhelms logic.' },
+  { title: 'The Temporal Strategist', essence: 'Mastery of Timing & Intentional Delay', description: 'You understand that timing is power. You know precisely when to strike, when to wait, and when letting an opponent overextend is the ultimate victory.' },
+  { title: 'The Deep Water Navigator', essence: 'Unfathomable Emotional Resilience', description: 'You traverse deep emotional terrain without drowning. You transform grief, disappointment, and quiet setbacks into profound wisdom and renewed purpose.' },
+  { title: 'The High-Frequency Vanguard', essence: 'Incisive Focus & Trend Perception', description: 'You sense cultural, economic, and social shifts before they manifest in headlines. Your agility allows you to position yourself ahead of the curve.' },
+  { title: 'The Citadel Mindset', essence: 'Self-Sustaining Inner Sanctuary', description: 'Your internal peace does not depend on external validation. You carry your fortress within you, remaining calm through external noise.' },
+  { title: 'The Iron Diplomat', essence: 'Velvet Softness over Steel conviction', description: 'Your manners are impeccable, but your standards are uncompromising. You command respect through quiet politeness combined with firm boundaries.' },
+  { title: 'The Perpetual Alchemist', essence: 'Transmutation of Scarcity into Abundance', description: 'You excel at taking limited resources and compounding them into significant assets. You see opportunity where others see structural deficits.' },
+  { title: 'The Stoic Beacon', essence: 'Unshakeable Stability in Volatile Environments', description: 'When market or situational turbulence shakes those around you, your composure becomes the reference point others rely on to recalibrate.' },
+  { title: 'The Silent Originator', essence: 'Generative Creativity Without Ego', description: 'You care more about the impact of your work than who gets immediate praise. This lack of ego allows you to create work of lasting significance.' },
+  { title: 'The Horizon Voyager', essence: 'Relentless Quest for Personal Sovereignty', description: 'You are fundamentally motivated by freedom. Every strategic decision you make is designed to expand your personal agency and self-determination.' }
+
 ];
 
 const FREE_TEASERS = [
@@ -87,7 +107,26 @@ const FREE_TEASERS = [
   "✨ Ember Discipline: The thing you almost gave up on last year is closer to paying off than you currently believe.",
   "✨ Reluctant Clarity: You saw a pattern in someone's behavior early and were right to trust that read.",
   "✨ Velvet Boundary: Your calm way of saying no has quietly earned you more respect than any argument could have.",
-  "✨ Salvage."
+  '✨ Personal Spark: People remember the specific way you made them feel seen years after a 5-minute conversation with you.',
+  '✨ Instinctive Shield: You have a radar for concealed motives that has silently saved you from at least three catastrophic traps.',
+  '✨ Rare Magnetism: The dreams you keep quietest are the exact ones that will redefine your next life milestone.',
+  '✨ Latent Velocity: You are standing in the final incubation phase of an ambition that others doubted you could pull off.',
+  '✨ Quiet Distinction: Your biggest competitive advantage has always been your composure when everyone else is reacting impulsively.',
+  '✨ Soul Integrity: You refuse to pretend to like things or people to fit in — and that quiet refusal is why high-value peers respect you.',
+  '✨ Perceptive Depth: You often grasp the real dynamic in a room before anyone else finishes their opening sentence.',
+  '✨ Strategic restraint: Your decision to remain silent in a past negotiation gave you leverage you still benefit from today.',
+  '✨ Unspoken Gravity: People instinctively look to your face for reactions during moments of sudden uncertainty.',
+  '✨ Unseen Alignment: An idea you abandoned months ago is about to intersect with a new opportunity in a lucrative way.',
+  '✨ Precise Compass: Your gut instinct regarding a specific individual was proven entirely correct, validating your intuition.',
+  '✨ Quiet Dominance: You do not need to win arguments when your steady results consistently settle the debate.',
+  '✨ Subtle Radiance: Your true strength shows in how quickly you reset after unexpected setbacks.',
+  '✨ Protected Peace: Your recent decision to tighten your inner circle has instantly elevated your mental clarity.',
+  '✨ Sovereign Orbit: You attract higher-caliber opportunities simply by refusing to chase low-value validation.',
+  '✨ Calibrated Focus: A major distraction that slowed you down last year no longer has any pull over your mind.',
+  '✨ Unmatched Discipline: The quiet routines you maintain behind closed doors are preparing you for a swift public ascent.',
+  '✨ Deep Authenticity: People trust your endorsement because they know you never lend your name to something insincere.',
+  '✨ Incisive Wisdom: You have learned to distinguish between temporary discomfort and true misalignment.',
+  '✨ Enduring Presence: Long after a project ends, partners remember your calm reliability over louder contributors.'
 ];
 
 const CORE_STRENGTHS = [
@@ -165,353 +204,6 @@ const CORE_STRENGTHS = [
     explanation: "When plans fail, you move immediately to salvage and adaptation instead of dwelling on the failure itself.",
     manifestation: "You lose far less time to setbacks than most people around you."
   },
-  
-];
-
-const THINGS_HOLDING_YOU_BACK = [
-  {
-    title: 'The "Must Do It All Alone" Reflex',
-    subconsciousLoop:
-      'Because you were let down in the past when relying on others, you default to bearing the entire weight solo. You mistake accepting help for forfeiting autonomy.',
-    prescription:
-      'Delegate the operational burdens so your mind can stay in high-leverage creative strategy. You do not need to suffer to prove your strength.',
-  },
-  {
-    title: 'Hyper-Vigilance Disguised as Preparedness',
-    subconsciousLoop:
-      'You mentally rehearse worst-case scenarios to stay invincible. While this protects you, it also delays celebration and keeps your body in subtle emergency mode.',
-    prescription:
-      'Give yourself permission to exhale when a victory lands. Success is not a trap designed to test you; it is the compound interest of your labor.',
-  },
-  {
-    title: 'Holding Grudges Against Your Past Self',
-    subconsciousLoop:
-      'You privately hold past naive decisions against yourself, demanding a level of wisdom back then that you only possess today because you survived it.',
-    prescription:
-      'Close the audit on your former self. You did not have today’s map when navigating yesterday’s fog.',
-  },
-  {
-    title: "The Approval Audit Loop",
-    subconsciousLoop: "You unconsciously scan rooms for signs of disapproval before committing to a decision, even ones that don't require anyone else's input.",
-    prescription: "Practice making one small decision daily without seeking outside confirmation first."
-  },
-  {
-    title: "Preemptive Self-Sabotage",
-    subconsciousLoop: "You quietly lower your own expectations before a big opportunity, so a potential failure will hurt less.",
-    prescription: "Commit fully to outcomes before they happen; protect ambition instead of protecting against disappointment."
-  },
-  {
-    title: "The Comparison Treadmill",
-    subconsciousLoop: "You measure your progress against curated highlight reels of others instead of your own baseline from a year ago.",
-    prescription: "Track only your own trajectory; comparison to strangers' edited timelines distorts your real progress."
-  },
-  {
-    title: "Chronic Availability Guilt",
-    subconsciousLoop: "You feel obligated to respond instantly to every request, treating any delay as a personal failing.",
-    prescription: "Build in response-time buffers deliberately; availability is not the same as value."
-  },
-  {
-    title: "The Certainty Requirement",
-    subconsciousLoop: "You wait for 100% confidence before acting, when most valuable moves only ever come with 70% clarity.",
-    prescription: "Set a lower confidence threshold for action; adjust the plan as new information arrives instead of waiting for certainty."
-  },
-  {
-    title: "Silent Over-Accommodation",
-    subconsciousLoop: "You default to accommodating others' preferences even in situations where your own preference genuinely matters more.",
-    prescription: "State your preference plainly at least once before automatically deferring."
-  },
-  {
-    title: "The Productivity Identity Trap",
-    subconsciousLoop: "You quietly tie your self-worth to how much you accomplished today, making rest feel like a threat to your value.",
-    prescription: "Separate your identity from your output; rest is maintenance, not a moral failing."
-  },
-  {
-    title: "Avoidance Disguised as Patience",
-    subconsciousLoop: "You tell yourself you're waiting for the right moment, when really you're avoiding a conversation or decision that feels uncomfortable.",
-    prescription: "Name the actual discomfort driving the delay, then address it directly instead of relabeling it as patience."
-  },
-  {
-    title: "The Invisible Labor Habit",
-    subconsciousLoop: "You take on unseen, uncredited work because pointing it out feels like bragging or causing conflict.",
-    prescription: "Document your contributions plainly; visibility of effort is not the same as arrogance."
-  },
-  {
-    title: "Residual Threat Scanning",
-    subconsciousLoop: "Even in safe, stable situations, part of you stays alert for danger because of how things used to be.",
-    prescription: "Practice consciously naming when a situation is actually safe, retraining your nervous system's baseline."
-  },
-];
-
-const HIDDEN_ADVANTAGES = [
-  {
-    title: 'The Underestimation Dividend',
-    superpower:
-      'People routinely misjudge your depth because you do not broadcast your moves prematurely. By the time they realize your game, you have already secured the board.',
-    howToLeverage: 'Let people keep talking. Continue executing in silence until the results are irreversible.',
-  },
-  {
-    title: 'High-Fidelity Emotional Intuition',
-    superpower:
-      'Your gut instinct operates like a forensic sensor. Whenever you ignore your stomach feeling for logic, you pay for it; whenever you trust it, you are vindicated.',
-    howToLeverage: 'Never explain away an intuitive red flag with intellectual excuses.',
-  },
-  {
-    title: 'The Ability to Reset Overnight',
-    superpower:
-      'While others require months to grieve an ended chapter or failed project, you can internalize the lesson, dust off your knees, and pivot with pristine focus.',
-    howToLeverage: 'Do not hesitate to cut losses on dead weight; your recovery speed is peerless.',
-  },
-  {
-    title: "The Compound Patience Edge",
-    superpower: "You outlast competitors not through raw talent but through sheer willingness to keep showing up long after others quit.",
-    howToLeverage: "Choose long-horizon goals where persistence alone eliminates most of your competition."
-  },
-  {
-    title: "Contextual Code-Switching",
-    superpower: "You naturally adjust your tone and approach across different social and professional settings without losing your core identity.",
-    howToLeverage: "Use this fluency to build bridges between groups that normally don't communicate well with each other."
-  },
-  {
-    title: "The Delayed Gratification Reservoir",
-    superpower: "You can forgo immediate comfort for a larger future payoff more consistently than most people around you.",
-    howToLeverage: "Direct this discipline toward compounding assets — skills, savings, relationships — that reward patience specifically."
-  },
-  {
-    title: "Threat Downgrade Instinct",
-    superpower: "You quickly distinguish between genuine emergencies and manufactured urgency, refusing to be rushed by artificial pressure.",
-    howToLeverage: "Use your calm pacing to negotiate better terms whenever someone tries to force a rushed decision."
-  },
-  {
-    title: "The Quiet Credibility Bank",
-    superpower: "You've built a reputation for reliability so consistent that people vouch for you without needing to be asked.",
-    howToLeverage: "Leverage this trust to open doors that usually require years of direct relationship-building."
-  },
-  {
-    title: "Emotional Weather Reading",
-    superpower: "You sense shifts in group mood before they're spoken aloud, giving you a head start on navigating group dynamics.",
-    howToLeverage: "Use early awareness to address tension privately before it escalates publicly."
-  },
-  {
-    title: "The Minimalist Focus Advantage",
-    superpower: "You accomplish more with fewer resources because you've eliminated the noise most people never bother clearing.",
-    howToLeverage: "Resist the urge to add complexity; your edge often comes from what you deliberately leave out."
-  },
-  {
-    title: "Reputation Compounding",
-    superpower: "Small consistent acts of integrity have quietly built a reputation that now works in your favor without any effort on your part.",
-    howToLeverage: "Keep protecting this asset; a strong reputation opens doors money alone cannot buy."
-  },
-  {
-    title: "The Graceful Exit Skill",
-    superpower: "You know how to leave situations, relationships, or deals without burning bridges, preserving future options others torch.",
-    howToLeverage: "Use this skill deliberately when stepping away from anything that's run its course."
-  },
-  {
-    title: "Instinctive Resource Stacking",
-    superpower: "You naturally combine underused resources — time, connections, skills — into new value nobody else noticed was possible.",
-    howToLeverage: "Actively audit your existing resources before seeking new ones; the combination is often already available to you."
-  },
-];
-
-// 2. DYNAMIC / FORWARD-LOOKING POOLS (Shift on refresh or time to feel alive like an active oracle)
-const THREE_MONTH_PHASES = [
-  {
-    phase: 'The Uncluttering & Elevation Window',
-    forecast:
-      'Over the next 90 days, you will feel an irresistible urge to clear dead weight: stagnant conversations, unfinished projects, and people who only reach out when they need your energy. A financial or career clarity moment arrives between week 6 and 8.',
-    unexpectedOpportunity: 'An unexpected connection from your past reaches out with a proposal that is far more lucrative than it looks on the surface.',
-    shiftsLabel: 'Current Transit: Clarity & Reclaiming Boundaries',
-  },
-  {
-    phase: 'The High-Leverage Visibility Surge',
-    forecast:
-      'Your quiet efforts from the last 6 months are about to step into public recognition. You will be invited into a room or conversation you thought was still a year away. Prepare your pitch and maintain high standards.',
-    unexpectedOpportunity: 'A sudden opening created by someone else stepping down puts you in position to assume natural leadership.',
-    shiftsLabel: 'Current Transit: Breakthrough & Recognition Wave',
-  },
-  {
-    phase: 'The Deep Realignment & Financial Pivot',
-    forecast:
-      'The next 12 weeks bring an overdue breakthrough in how you generate and safeguard your resources. An old fear regarding stability dissolves as you implement a smarter system.',
-    unexpectedOpportunity: 'A side conversation over coffee or message evolves into a viable income or collaboration channel.',
-    shiftsLabel: 'Current Transit: Strategic Abundance & Resource Consolidation',
-  },
-  {
-    phase: 'The Courageous Chapter Transition',
-    forecast:
-      'A situation that you have tolerated out of comfort will finally reach its expiration date. Letting it go will not leave a void — it will instantly open a corridor for the genuine partner or project you deserve.',
-    unexpectedOpportunity: 'A sudden travel or relocation spark that reorganizes your outlook on what you want from the next 5 years.',
-    shiftsLabel: 'Current Transit: Sovereign Transformation & Momentum',
-  },
-  {
-    phase: "The Quiet Confidence Rebuild",
-    forecast: "Over the next 90 days, a specific area of self-doubt will steadily dissolve as small proof points accumulate. By week 10, you will notice you've stopped needing to convince yourself.",
-    unexpectedOpportunity: "A minor success you almost dismissed becomes the reference point that shifts your entire outlook.",
-    shiftsLabel: "Current Transit: Internal Proof & Quiet Self-Trust"
-  },
-  {
-    phase: "The Strategic Pruning Season",
-    forecast: "The next quarter calls for cutting away obligations that no longer serve your direction. What feels like loss in week 3 will feel like relief by week 9.",
-    unexpectedOpportunity: "Removing one commitment frees up bandwidth for an opportunity you hadn't even noticed was waiting.",
-    shiftsLabel: "Current Transit: Deliberate Subtraction & Focus Recovery"
-  },
-  {
-    phase: "The Trust Rebuilding Arc",
-    forecast: "A relationship or partnership strained by past friction begins to stabilize over these 90 days, provided both sides show consistent small follow-through.",
-    unexpectedOpportunity: "A small act of good faith from the other side arrives sooner than you expected.",
-    shiftsLabel: "Current Transit: Repair & Renewed Reliability"
-  },
-  {
-    phase: "The Visibility Discomfort Window",
-    forecast: "You'll be pushed slightly further into the spotlight than feels comfortable over the next quarter. The discomfort fades faster than anticipated once you're actually in it.",
-    unexpectedOpportunity: "Someone influential notices your work specifically because you stopped hiding it.",
-    shiftsLabel: "Current Transit: Exposure & Earned Recognition"
-  },
-  {
-    phase: "The Financial Discipline Sprint",
-    forecast: "The next 12 weeks reward tightened spending and clearer tracking with a noticeably stronger position by the end of the window.",
-    unexpectedOpportunity: "A small, overlooked expense you finally address frees up more room than expected.",
-    shiftsLabel: "Current Transit: Precision Budgeting & Quiet Accumulation"
-  },
-  {
-    phase: "The Skill Stress-Test Period",
-    forecast: "A skill you've been developing quietly gets tested in a real, visible situation during this window, and it holds up better than you feared.",
-    unexpectedOpportunity: "The test itself becomes proof you can point to the next time doubt creeps in.",
-    shiftsLabel: "Current Transit: Applied Competence & Proven Readiness"
-  },
-  {
-    phase: "The Boundary Reinforcement Quarter",
-    forecast: "A boundary you set previously gets tested again over these 90 days. Holding firm this time settles the matter permanently.",
-    unexpectedOpportunity: "The person testing the boundary ultimately respects you more for holding it.",
-    shiftsLabel: "Current Transit: Boundary Consolidation & Respect Earned"
-  },
-  {
-    phase: "The Quiet Recovery Window",
-    forecast: "After a demanding stretch, this quarter is built for genuine rest and recalibration rather than new pursuits.",
-    unexpectedOpportunity: "Slowing down reveals a solution to a problem you'd been forcing without success.",
-    shiftsLabel: "Current Transit: Restoration & Involuntary Clarity"
-  },
-  {
-    phase: "The Alliance Formation Phase",
-    forecast: "New, genuinely aligned collaborators enter your circle over these 12 weeks, offsetting a period of relative isolation.",
-    unexpectedOpportunity: "A group you weren't actively seeking out invites you in based on reputation alone.",
-    shiftsLabel: "Current Transit: New Alliances & Expanded Support"
-  },
-  {
-    phase: "The Decisive Cut Corridor",
-    forecast: "A decision you've delayed for months finally gets made in this window, and the relief of finality outweighs any lingering uncertainty.",
-    unexpectedOpportunity: "Making the decision opens a second opportunity that was blocked by the indecision itself.",
-    shiftsLabel: "Current Transit: Resolution & Forward Motion"
-  },
-];
-
-const ONE_YEAR_OUTLOOKS = [
-  'Within 12 months, your day-to-day lifestyle will look markedly different. You will have transitioned away from reactive firefighting into high-autonomy decision making. You will be surrounded by a smaller, significantly more loyal circle that matches your integrity.',
-  'Your 1-year trajectory indicates a major structural upgrade: either a career pivot that doubles your leverage or a personal creative milestone you have nurtured in secret. You will look back at this exact month as the turning point when you stopped apologizing for your ambitions.',
-  'By this time next year, a chronic emotional or financial anxiety that has haunted the last two years will be completely neutralized. You will have built proof of your self-efficacy that nobody can talk you out of.',
-  "A year from now, a decision you're currently agonizing over will look obvious in hindsight, and you'll wonder why it took so long to make.",
-  "Within 12 months, you will have quietly replaced at least one major source of stress with a system that runs without your constant attention.",
-  "Your one-year outlook includes a relationship, professional or personal, that shifts from tentative to genuinely dependable.",
-  "By this time next year, a version of confidence you're currently faking will have become authentic, earned through repeated proof.",
-  "Twelve months ahead, a financial habit you build in the coming weeks will have compounded into a noticeably different baseline.",
-  "Within a year, you will have stopped explaining a decision to people who were never going to understand it anyway.",
-  "Your 12-month arc includes a moment where you recognize your own growth only because someone else points it out first.",
-  "A year from now, an environment that currently drains you will either be transformed or fully behind you.",
-  "By next year, a fear you're currently managing quietly will have shrunk enough that it no longer shapes your daily decisions.",
-  "Within 12 months, you will look back and realize this exact period was the quiet turning point, even though it didn't feel dramatic at the time.",
-  
-];
-
-const FIVE_YEAR_LEGACIES = [
-  'Your 5-year arc is defined by sovereignty. You are not building for temporary validation; you are constructing generational stability and intellectual freedom. People will look to you as the anchor who changed the trajectory of your lineage.',
-  'In five years, you will be operating in your zone of genius with zero tolerance for busywork. You will mentor others through the exact labyrinths that once felt impassable to you.',
-  'Your long-term footprint is one of quiet impact and undeniable reputation. You will own your time, command respect across your domain, and inhabit a home environment filled with peace, beauty, and emotional security.',
-  "In five years, you will have built a life that requires far less recovery time than the one you're currently living.",
-  "Your 5-year arc includes becoming the person others in your circle quietly model their own decisions after.",
-  "Five years out, a skill you're building today almost invisibly will have become one of the primary ways people recognize your value.",
-  "Your long-term trajectory shows a home, physical or emotional, that finally matches the peace you've been working toward.",
-  "In five years, the version of you reading this today will feel like an earlier chapter, not a stranger.",
-  "Your 5-year legacy includes having said no to enough wrong opportunities that the right ones had room to arrive.",
-  "Five years from now, you will have mentored or supported someone through the exact struggle you once faced alone.",
-  "Your long-term footprint includes a body of work or relationships built slowly enough that none of it needs to be undone later.",
-  "In five years, the discipline you're building now will feel less like effort and simply like who you are.",
-  "Your 5-year arc shows a clear, hard-won distinction between the things worth your energy and the things that only used to seem that way.",
-
-];
-
-const GOLDEN_RULES = [
-  'Never shrink yourself in rooms where your light makes insecure people squint. Find bigger rooms.',
-  'Protect your morning peace as fiercely as you protect your bank account. How you treat your first hour dictates how the world treats your day.',
-  'Do not trade long-term respect for short-term peace. Speak the boundary early while it is small.',
-  'Your value is not measured by how much exhaustion you can endure. Rest is a strategic weapon.',
-  "Do not confuse urgency from others with actual importance to you. Check the source before you check the clock.",
-  "Say the uncomfortable thing early, while it's still small. Delay only makes the eventual conversation heavier.",
-  "Guard your first hour and your last hour of the day; how you open and close it shapes everything between.",
-  "Trust actions repeated over time far more than promises made once under pressure.",
-  "Let silence do some of your negotiating. Not every gap needs to be filled by you.",
-  "Choose depth with fewer people over performance for a wider audience.",
-  "Release the need to be understood by everyone; being understood by the right few is enough.",
-  "Treat every boundary you set as a data point others will use to calibrate how to treat you going forward.",
-  "Spend your best energy on your hardest, most important task first, not your easiest one.",
-  "When someone shows you who they are under pressure, believe that version over the polished one.",
-];
-
-// ==========================================
-// 1. FORTUNE ARCHETYPES
-// ==========================================
-export const FORTUNE_ARCHETYPES = [
-  { title: 'The Silent Catalyst', essence: 'Quiet Strategic Magnetism', description: 'You possess an unusual ability to anchor a room without raising your voice. People subconsciously bring their true intentions to you because your presence makes performative behavior feel unnecessary.' },
-  { title: 'The Resilient Sovereign', essence: 'Self-Forged Authority & Dignity', description: 'You were tested early and learned to build your own emotional sovereignty. You do not panic under pressure because you have already survived storms that would have dismantled softer foundations.' },
-  { title: 'The Visionary Anchor', essence: 'Grounded Long-Term Foresight', description: 'While others react to current noise, you instinctively plan 18 months ahead. Your intuition is not random guesswork; it is high-speed pattern recognition wrapped in patient self-trust.' },
-  { title: 'The Alchemical Empath', essence: 'Emotional Intelligence with Teeth', description: 'You read rooms in milliseconds, detecting micro-shifts in tone before words are spoken. Your superpower is warmth backed by ironclad boundaries when someone attempts to take advantage.' },
-  { title: 'The Unflinching Innovator', essence: 'Relentless High-Velocity Execution', description: 'You despise stagnation and artificial bureaucracy. When you commit your mind to an idea, your follow-through leaves spectators wondering where you found the quiet momentum.' },
-  { title: 'The Harmonic Strategist', essence: 'Tactical Grace & Unshakable Poise', description: 'You know how to win battles without creating unnecessary enemies. You negotiate with diplomacy, but you never confuse kindness with yielding on your non-negotiables.' },
-  { title: 'The Unseen Architect', essence: 'Structural Genius & Quiet Systemic Impact', description: 'You design systems, boundaries, and habits that endure long after initial enthusiasm fades. Your legacy is built on quiet foundations that withstand volatile conditions.' },
-  { title: 'The Obsidian Sentinel', essence: 'Uncompromising Loyalty & Shielded Power', description: 'You protect your inner circle with formidable fierceness. You hold a calm, formidable center that deters disingenuous actors before they can take root.' },
-  { title: 'The Quantum Pragmatist', essence: 'Rooted Idealism & Operational Precision', description: 'You bridge high-minded visions with practical execution. You do not waste time on idealism without blueprints; you make abstract dreams tangibly real.' },
-  { title: 'The Luminous Renegade', essence: 'Quiet Non-Conformity & Authentic Pathfinding', description: 'You refuse to follow inherited scripts simply because they are familiar. You blaze distinct trails with steady dignity rather than performative rebellion.' },
-  { title: 'The Sovereign Mediator', essence: 'Equanimous Judgment & Deep Perspective', description: 'You bring clarity to complex conflicts by seeing past emotional distortion. People rely on your objective judgment when narrative noise overwhelms logic.' },
-  { title: 'The Temporal Strategist', essence: 'Mastery of Timing & Intentional Delay', description: 'You understand that timing is power. You know precisely when to strike, when to wait, and when letting an opponent overextend is the ultimate victory.' },
-  { title: 'The Deep Water Navigator', essence: 'Unfathomable Emotional Resilience', description: 'You traverse deep emotional terrain without drowning. You transform grief, disappointment, and quiet setbacks into profound wisdom and renewed purpose.' },
-  { title: 'The High-Frequency Vanguard', essence: 'Incisive Focus & Trend Perception', description: 'You sense cultural, economic, and social shifts before they manifest in headlines. Your agility allows you to position yourself ahead of the curve.' },
-  { title: 'The Citadel Mindset', essence: 'Self-Sustaining Inner Sanctuary', description: 'Your internal peace does not depend on external validation. You carry your fortress within you, remaining calm through external noise.' },
-  { title: 'The Iron Diplomat', essence: 'Velvet Softness over Steel conviction', description: 'Your manners are impeccable, but your standards are uncompromising. You command respect through quiet politeness combined with firm boundaries.' },
-  { title: 'The Perpetual Alchemist', essence: 'Transmutation of Scarcity into Abundance', description: 'You excel at taking limited resources and compounding them into significant assets. You see opportunity where others see structural deficits.' },
-  { title: 'The Stoic Beacon', essence: 'Unshakeable Stability in Volatile Environments', description: 'When market or situational turbulence shakes those around you, your composure becomes the reference point others rely on to recalibrate.' },
-  { title: 'The Silent Originator', essence: 'Generative Creativity Without Ego', description: 'You care more about the impact of your work than who gets immediate praise. This lack of ego allows you to create work of lasting significance.' },
-  { title: 'The Horizon Voyager', essence: 'Relentless Quest for Personal Sovereignty', description: 'You are fundamentally motivated by freedom. Every strategic decision you make is designed to expand your personal agency and self-determination.' }
-];
-
-// ==========================================
-// 2. FREE TEASERS
-// ==========================================
-export const FREE_TEASERS = [
-  '✨ Personal Spark: People remember the specific way you made them feel seen years after a 5-minute conversation with you.',
-  '✨ Instinctive Shield: You have a radar for concealed motives that has silently saved you from at least three catastrophic traps.',
-  '✨ Rare Magnetism: The dreams you keep quietest are the exact ones that will redefine your next life milestone.',
-  '✨ Latent Velocity: You are standing in the final incubation phase of an ambition that others doubted you could pull off.',
-  '✨ Quiet Distinction: Your biggest competitive advantage has always been your composure when everyone else is reacting impulsively.',
-  '✨ Soul Integrity: You refuse to pretend to like things or people to fit in — and that quiet refusal is why high-value peers respect you.',
-  '✨ Perceptive Depth: You often grasp the real dynamic in a room before anyone else finishes their opening sentence.',
-  '✨ Strategic restraint: Your decision to remain silent in a past negotiation gave you leverage you still benefit from today.',
-  '✨ Unspoken Gravity: People instinctively look to your face for reactions during moments of sudden uncertainty.',
-  '✨ Unseen Alignment: An idea you abandoned months ago is about to intersect with a new opportunity in a lucrative way.',
-  '✨ Precise Compass: Your gut instinct regarding a specific individual was proven entirely correct, validating your intuition.',
-  '✨ Quiet Dominance: You do not need to win arguments when your steady results consistently settle the debate.',
-  '✨ Subtle Radiance: Your true strength shows in how quickly you reset after unexpected setbacks.',
-  '✨ Protected Peace: Your recent decision to tighten your inner circle has instantly elevated your mental clarity.',
-  '✨ Sovereign Orbit: You attract higher-caliber opportunities simply by refusing to chase low-value validation.',
-  '✨ Calibrated Focus: A major distraction that slowed you down last year no longer has any pull over your mind.',
-  '✨ Unmatched Discipline: The quiet routines you maintain behind closed doors are preparing you for a swift public ascent.',
-  '✨ Deep Authenticity: People trust your endorsement because they know you never lend your name to something insincere.',
-  '✨ Incisive Wisdom: You have learned to distinguish between temporary discomfort and true misalignment.',
-  '✨ Enduring Presence: Long after a project ends, partners remember your calm reliability over louder contributors.'
-];
-
-// ==========================================
-// 3. CORE STRENGTHS
-// ==========================================
-export const CORE_STRENGTHS = [
   {
     title: 'Adaptive Composure Under Fire',
     explanation: 'When chaos erupts, your nervous system does not crash; it narrows its focus onto the single highest-leverage solution. Where others exhaust energy complaining, you quietly rearrange reality.',
@@ -611,14 +303,83 @@ export const CORE_STRENGTHS = [
     title: 'Regenerative Solitude Practice',
     explanation: 'You use quiet, unstructured time to process experience, sharpen focus, and reset your baseline energy effectively.',
     manifestation: 'Your solo time fuels your public performance.'
-  }
+  },
+  
 ];
 
-// ==========================================
-// 4. THINGS HOLDING YOU BACK
-// ==========================================
-export const THINGS_HOLDING_YOU_BACK = [
+const THINGS_HOLDING_YOU_BACK = [
   {
+    title: 'The "Must Do It All Alone" Reflex',
+    subconsciousLoop:
+      'Because you were let down in the past when relying on others, you default to bearing the entire weight solo. You mistake accepting help for forfeiting autonomy.',
+    prescription:
+      'Delegate the operational burdens so your mind can stay in high-leverage creative strategy. You do not need to suffer to prove your strength.',
+  },
+  {
+    title: 'Hyper-Vigilance Disguised as Preparedness',
+    subconsciousLoop:
+      'You mentally rehearse worst-case scenarios to stay invincible. While this protects you, it also delays celebration and keeps your body in subtle emergency mode.',
+    prescription:
+      'Give yourself permission to exhale when a victory lands. Success is not a trap designed to test you; it is the compound interest of your labor.',
+  },
+  {
+    title: 'Holding Grudges Against Your Past Self',
+    subconsciousLoop:
+      'You privately hold past naive decisions against yourself, demanding a level of wisdom back then that you only possess today because you survived it.',
+    prescription:
+      'Close the audit on your former self. You did not have today’s map when navigating yesterday’s fog.',
+  },
+  {
+    title: "The Approval Audit Loop",
+    subconsciousLoop: "You unconsciously scan rooms for signs of disapproval before committing to a decision, even ones that don't require anyone else's input.",
+    prescription: "Practice making one small decision daily without seeking outside confirmation first."
+  },
+  {
+    title: "Preemptive Self-Sabotage",
+    subconsciousLoop: "You quietly lower your own expectations before a big opportunity, so a potential failure will hurt less.",
+    prescription: "Commit fully to outcomes before they happen; protect ambition instead of protecting against disappointment."
+  },
+  {
+    title: "The Comparison Treadmill",
+    subconsciousLoop: "You measure your progress against curated highlight reels of others instead of your own baseline from a year ago.",
+    prescription: "Track only your own trajectory; comparison to strangers' edited timelines distorts your real progress."
+  },
+  {
+    title: "Chronic Availability Guilt",
+    subconsciousLoop: "You feel obligated to respond instantly to every request, treating any delay as a personal failing.",
+    prescription: "Build in response-time buffers deliberately; availability is not the same as value."
+  },
+  {
+    title: "The Certainty Requirement",
+    subconsciousLoop: "You wait for 100% confidence before acting, when most valuable moves only ever come with 70% clarity.",
+    prescription: "Set a lower confidence threshold for action; adjust the plan as new information arrives instead of waiting for certainty."
+  },
+  {
+    title: "Silent Over-Accommodation",
+    subconsciousLoop: "You default to accommodating others' preferences even in situations where your own preference genuinely matters more.",
+    prescription: "State your preference plainly at least once before automatically deferring."
+  },
+  {
+    title: "The Productivity Identity Trap",
+    subconsciousLoop: "You quietly tie your self-worth to how much you accomplished today, making rest feel like a threat to your value.",
+    prescription: "Separate your identity from your output; rest is maintenance, not a moral failing."
+  },
+  {
+    title: "Avoidance Disguised as Patience",
+    subconsciousLoop: "You tell yourself you're waiting for the right moment, when really you're avoiding a conversation or decision that feels uncomfortable.",
+    prescription: "Name the actual discomfort driving the delay, then address it directly instead of relabeling it as patience."
+  },
+  {
+    title: "The Invisible Labor Habit",
+    subconsciousLoop: "You take on unseen, uncredited work because pointing it out feels like bragging or causing conflict.",
+    prescription: "Document your contributions plainly; visibility of effort is not the same as arrogance."
+  },
+  {
+    title: "Residual Threat Scanning",
+    subconsciousLoop: "Even in safe, stable situations, part of you stays alert for danger because of how things used to be.",
+    prescription: "Practice consciously naming when a situation is actually safe, retraining your nervous system's baseline."
+  },
+   {
     title: 'The "Must Do It All Alone" Reflex',
     subconsciousLoop: 'Because you were let down in the past when relying on others, you default to bearing the entire weight solo. You mistake accepting help for forfeiting autonomy.',
     prescription: 'Delegate operational burdens so your mind can stay in high-leverage creative strategy. You do not need to suffer to prove your strength.'
@@ -720,10 +481,75 @@ export const THINGS_HOLDING_YOU_BACK = [
   }
 ];
 
-// ==========================================
-// 5. HIDDEN ADVANTAGES
-// ==========================================
-export const HIDDEN_ADVANTAGES = [
+const HIDDEN_ADVANTAGES = [
+  {
+    title: 'The Underestimation Dividend',
+    superpower:
+      'People routinely misjudge your depth because you do not broadcast your moves prematurely. By the time they realize your game, you have already secured the board.',
+    howToLeverage: 'Let people keep talking. Continue executing in silence until the results are irreversible.',
+  },
+  {
+    title: 'High-Fidelity Emotional Intuition',
+    superpower:
+      'Your gut instinct operates like a forensic sensor. Whenever you ignore your stomach feeling for logic, you pay for it; whenever you trust it, you are vindicated.',
+    howToLeverage: 'Never explain away an intuitive red flag with intellectual excuses.',
+  },
+  {
+    title: 'The Ability to Reset Overnight',
+    superpower:
+      'While others require months to grieve an ended chapter or failed project, you can internalize the lesson, dust off your knees, and pivot with pristine focus.',
+    howToLeverage: 'Do not hesitate to cut losses on dead weight; your recovery speed is peerless.',
+  },
+  {
+    title: "The Compound Patience Edge",
+    superpower: "You outlast competitors not through raw talent but through sheer willingness to keep showing up long after others quit.",
+    howToLeverage: "Choose long-horizon goals where persistence alone eliminates most of your competition."
+  },
+  {
+    title: "Contextual Code-Switching",
+    superpower: "You naturally adjust your tone and approach across different social and professional settings without losing your core identity.",
+    howToLeverage: "Use this fluency to build bridges between groups that normally don't communicate well with each other."
+  },
+  {
+    title: "The Delayed Gratification Reservoir",
+    superpower: "You can forgo immediate comfort for a larger future payoff more consistently than most people around you.",
+    howToLeverage: "Direct this discipline toward compounding assets — skills, savings, relationships — that reward patience specifically."
+  },
+  {
+    title: "Threat Downgrade Instinct",
+    superpower: "You quickly distinguish between genuine emergencies and manufactured urgency, refusing to be rushed by artificial pressure.",
+    howToLeverage: "Use your calm pacing to negotiate better terms whenever someone tries to force a rushed decision."
+  },
+  {
+    title: "The Quiet Credibility Bank",
+    superpower: "You've built a reputation for reliability so consistent that people vouch for you without needing to be asked.",
+    howToLeverage: "Leverage this trust to open doors that usually require years of direct relationship-building."
+  },
+  {
+    title: "Emotional Weather Reading",
+    superpower: "You sense shifts in group mood before they're spoken aloud, giving you a head start on navigating group dynamics.",
+    howToLeverage: "Use early awareness to address tension privately before it escalates publicly."
+  },
+  {
+    title: "The Minimalist Focus Advantage",
+    superpower: "You accomplish more with fewer resources because you've eliminated the noise most people never bother clearing.",
+    howToLeverage: "Resist the urge to add complexity; your edge often comes from what you deliberately leave out."
+  },
+  {
+    title: "Reputation Compounding",
+    superpower: "Small consistent acts of integrity have quietly built a reputation that now works in your favor without any effort on your part.",
+    howToLeverage: "Keep protecting this asset; a strong reputation opens doors money alone cannot buy."
+  },
+  {
+    title: "The Graceful Exit Skill",
+    superpower: "You know how to leave situations, relationships, or deals without burning bridges, preserving future options others torch.",
+    howToLeverage: "Use this skill deliberately when stepping away from anything that's run its course."
+  },
+  {
+    title: "Instinctive Resource Stacking",
+    superpower: "You naturally combine underused resources — time, connections, skills — into new value nobody else noticed was possible.",
+    howToLeverage: "Actively audit your existing resources before seeking new ones; the combination is often already available to you."
+  },
   {
     title: 'The Underestimation Dividend',
     superpower: 'People routinely misjudge your depth because you do not broadcast your moves prematurely. By the time they realize your game, you have already secured the board.',
@@ -826,10 +652,96 @@ export const HIDDEN_ADVANTAGES = [
   }
 ];
 
-// ==========================================
-// 6. THREE MONTH PHASES
-// ==========================================
-export const THREE_MONTH_PHASES = [
+// 2. DYNAMIC / FORWARD-LOOKING POOLS (Shift on refresh or time to feel alive like an active oracle)
+const THREE_MONTH_PHASES = [
+  {
+    phase: 'The Uncluttering & Elevation Window',
+    forecast:
+      'Over the next 90 days, you will feel an irresistible urge to clear dead weight: stagnant conversations, unfinished projects, and people who only reach out when they need your energy. A financial or career clarity moment arrives between week 6 and 8.',
+    unexpectedOpportunity: 'An unexpected connection from your past reaches out with a proposal that is far more lucrative than it looks on the surface.',
+    shiftsLabel: 'Current Transit: Clarity & Reclaiming Boundaries',
+  },
+  {
+    phase: 'The High-Leverage Visibility Surge',
+    forecast:
+      'Your quiet efforts from the last 6 months are about to step into public recognition. You will be invited into a room or conversation you thought was still a year away. Prepare your pitch and maintain high standards.',
+    unexpectedOpportunity: 'A sudden opening created by someone else stepping down puts you in position to assume natural leadership.',
+    shiftsLabel: 'Current Transit: Breakthrough & Recognition Wave',
+  },
+  {
+    phase: 'The Deep Realignment & Financial Pivot',
+    forecast:
+      'The next 12 weeks bring an overdue breakthrough in how you generate and safeguard your resources. An old fear regarding stability dissolves as you implement a smarter system.',
+    unexpectedOpportunity: 'A side conversation over coffee or message evolves into a viable income or collaboration channel.',
+    shiftsLabel: 'Current Transit: Strategic Abundance & Resource Consolidation',
+  },
+  {
+    phase: 'The Courageous Chapter Transition',
+    forecast:
+      'A situation that you have tolerated out of comfort will finally reach its expiration date. Letting it go will not leave a void — it will instantly open a corridor for the genuine partner or project you deserve.',
+    unexpectedOpportunity: 'A sudden travel or relocation spark that reorganizes your outlook on what you want from the next 5 years.',
+    shiftsLabel: 'Current Transit: Sovereign Transformation & Momentum',
+  },
+  {
+    phase: "The Quiet Confidence Rebuild",
+    forecast: "Over the next 90 days, a specific area of self-doubt will steadily dissolve as small proof points accumulate. By week 10, you will notice you've stopped needing to convince yourself.",
+    unexpectedOpportunity: "A minor success you almost dismissed becomes the reference point that shifts your entire outlook.",
+    shiftsLabel: "Current Transit: Internal Proof & Quiet Self-Trust"
+  },
+  {
+    phase: "The Strategic Pruning Season",
+    forecast: "The next quarter calls for cutting away obligations that no longer serve your direction. What feels like loss in week 3 will feel like relief by week 9.",
+    unexpectedOpportunity: "Removing one commitment frees up bandwidth for an opportunity you hadn't even noticed was waiting.",
+    shiftsLabel: "Current Transit: Deliberate Subtraction & Focus Recovery"
+  },
+  {
+    phase: "The Trust Rebuilding Arc",
+    forecast: "A relationship or partnership strained by past friction begins to stabilize over these 90 days, provided both sides show consistent small follow-through.",
+    unexpectedOpportunity: "A small act of good faith from the other side arrives sooner than you expected.",
+    shiftsLabel: "Current Transit: Repair & Renewed Reliability"
+  },
+  {
+    phase: "The Visibility Discomfort Window",
+    forecast: "You'll be pushed slightly further into the spotlight than feels comfortable over the next quarter. The discomfort fades faster than anticipated once you're actually in it.",
+    unexpectedOpportunity: "Someone influential notices your work specifically because you stopped hiding it.",
+    shiftsLabel: "Current Transit: Exposure & Earned Recognition"
+  },
+  {
+    phase: "The Financial Discipline Sprint",
+    forecast: "The next 12 weeks reward tightened spending and clearer tracking with a noticeably stronger position by the end of the window.",
+    unexpectedOpportunity: "A small, overlooked expense you finally address frees up more room than expected.",
+    shiftsLabel: "Current Transit: Precision Budgeting & Quiet Accumulation"
+  },
+  {
+    phase: "The Skill Stress-Test Period",
+    forecast: "A skill you've been developing quietly gets tested in a real, visible situation during this window, and it holds up better than you feared.",
+    unexpectedOpportunity: "The test itself becomes proof you can point to the next time doubt creeps in.",
+    shiftsLabel: "Current Transit: Applied Competence & Proven Readiness"
+  },
+  {
+    phase: "The Boundary Reinforcement Quarter",
+    forecast: "A boundary you set previously gets tested again over these 90 days. Holding firm this time settles the matter permanently.",
+    unexpectedOpportunity: "The person testing the boundary ultimately respects you more for holding it.",
+    shiftsLabel: "Current Transit: Boundary Consolidation & Respect Earned"
+  },
+  {
+    phase: "The Quiet Recovery Window",
+    forecast: "After a demanding stretch, this quarter is built for genuine rest and recalibration rather than new pursuits.",
+    unexpectedOpportunity: "Slowing down reveals a solution to a problem you'd been forcing without success.",
+    shiftsLabel: "Current Transit: Restoration & Involuntary Clarity"
+  },
+  {
+    phase: "The Alliance Formation Phase",
+    forecast: "New, genuinely aligned collaborators enter your circle over these 12 weeks, offsetting a period of relative isolation.",
+    unexpectedOpportunity: "A group you weren't actively seeking out invites you in based on reputation alone.",
+    shiftsLabel: "Current Transit: New Alliances & Expanded Support"
+  },
+  {
+    phase: "The Decisive Cut Corridor",
+    forecast: "A decision you've delayed for months finally gets made in this window, and the relief of finality outweighs any lingering uncertainty.",
+    unexpectedOpportunity: "Making the decision opens a second opportunity that was blocked by the indecision itself.",
+    shiftsLabel: "Current Transit: Resolution & Forward Motion"
+  },
   {
     phase: 'The Uncluttering & Elevation Window',
     forecast: 'Over the next 90 days, you will feel an irresistible urge to clear dead weight: stagnant conversations, unfinished projects, and people who only reach out when they need your energy. A financial or career clarity moment arrives between week 6 and 8.',
@@ -952,11 +864,21 @@ export const THREE_MONTH_PHASES = [
   }
 ];
 
-// ==========================================
-// 7. ONE YEAR OUTLOOKS
-// ==========================================
-export const ONE_YEAR_OUTLOOKS = [
+const ONE_YEAR_OUTLOOKS = [
   'Within 12 months, your day-to-day lifestyle will look markedly different. You will have transitioned away from reactive firefighting into high-autonomy decision making. You will be surrounded by a smaller, significantly more loyal circle that matches your integrity.',
+  'Your 1-year trajectory indicates a major structural upgrade: either a career pivot that doubles your leverage or a personal creative milestone you have nurtured in secret. You will look back at this exact month as the turning point when you stopped apologizing for your ambitions.',
+  'By this time next year, a chronic emotional or financial anxiety that has haunted the last two years will be completely neutralized. You will have built proof of your self-efficacy that nobody can talk you out of.',
+  "A year from now, a decision you're currently agonizing over will look obvious in hindsight, and you'll wonder why it took so long to make.",
+  "Within 12 months, you will have quietly replaced at least one major source of stress with a system that runs without your constant attention.",
+  "Your one-year outlook includes a relationship, professional or personal, that shifts from tentative to genuinely dependable.",
+  "By this time next year, a version of confidence you're currently faking will have become authentic, earned through repeated proof.",
+  "Twelve months ahead, a financial habit you build in the coming weeks will have compounded into a noticeably different baseline.",
+  "Within a year, you will have stopped explaining a decision to people who were never going to understand it anyway.",
+  "Your 12-month arc includes a moment where you recognize your own growth only because someone else points it out first.",
+  "A year from now, an environment that currently drains you will either be transformed or fully behind you.",
+  "By next year, a fear you're currently managing quietly will have shrunk enough that it no longer shapes your daily decisions.",
+  "Within 12 months, you will look back and realize this exact period was the quiet turning point, even though it didn't feel dramatic at the time.",
+   'Within 12 months, your day-to-day lifestyle will look markedly different. You will have transitioned away from reactive firefighting into high-autonomy decision making. You will be surrounded by a smaller, significantly more loyal circle that matches your integrity.',
   'Your 1-year trajectory indicates a major structural upgrade: either a career pivot that doubles your leverage or a personal creative milestone you have nurtured in secret. You will look back at this exact month as the turning point when you stopped apologizing for your ambitions.',
   'By this time next year, a chronic emotional or financial anxiety that has haunted the last two years will be completely neutralized. You will have built proof of your self-efficacy that nobody can talk you out of.',
   'Twelve months from today, you will operate from a position of authentic leverage. Your time will be spent on chosen priorities, supported by clear boundaries that keep low-value demands off your schedule.',
@@ -976,12 +898,23 @@ export const ONE_YEAR_OUTLOOKS = [
   'By next year, you will possess a clear personal knowledge library and process framework, allowing you to produce high-quality work in half the time.',
   'Your one-year arc secures a lasting upgrade in health and vitality. Energy crashes will be replaced by reliable daily stamina.',
   'Twelve months from now, you will look back on today’s concerns with calm satisfaction, seeing clearly how every piece fit into your long-term growth.'
+  
 ];
 
-// ==========================================
-// 8. FIVE YEAR LEGACIES
-// ==========================================
-export const FIVE_YEAR_LEGACIES = [
+const FIVE_YEAR_LEGACIES = [
+  'Your 5-year arc is defined by sovereignty. You are not building for temporary validation; you are constructing generational stability and intellectual freedom. People will look to you as the anchor who changed the trajectory of your lineage.',
+  'In five years, you will be operating in your zone of genius with zero tolerance for busywork. You will mentor others through the exact labyrinths that once felt impassable to you.',
+  'Your long-term footprint is one of quiet impact and undeniable reputation. You will own your time, command respect across your domain, and inhabit a home environment filled with peace, beauty, and emotional security.',
+  "In five years, you will have built a life that requires far less recovery time than the one you're currently living.",
+  "Your 5-year arc includes becoming the person others in your circle quietly model their own decisions after.",
+  "Five years out, a skill you're building today almost invisibly will have become one of the primary ways people recognize your value.",
+  "Your long-term trajectory shows a home, physical or emotional, that finally matches the peace you've been working toward.",
+  "In five years, the version of you reading this today will feel like an earlier chapter, not a stranger.",
+  "Your 5-year legacy includes having said no to enough wrong opportunities that the right ones had room to arrive.",
+  "Five years from now, you will have mentored or supported someone through the exact struggle you once faced alone.",
+  "Your long-term footprint includes a body of work or relationships built slowly enough that none of it needs to be undone later.",
+  "In five years, the discipline you're building now will feel less like effort and simply like who you are.",
+  "Your 5-year arc shows a clear, hard-won distinction between the things worth your energy and the things that only used to seem that way.",
   'Your 5-year arc is defined by sovereignty. You are not building for temporary validation; you are constructing generational stability and intellectual freedom. People will look to you as the anchor who changed the trajectory of your lineage.',
   'In five years, you will be operating in your zone of genius with zero tolerance for busywork. You will mentor others through the exact labyrinths that once felt impassable to you.',
   'Your long-term footprint is one of quiet impact and undeniable reputation. You will own your time, command respect across your domain, and inhabit a home environment filled with peace, beauty, and emotional security.',
@@ -1001,15 +934,25 @@ export const FIVE_YEAR_LEGACIES = [
   'Five years out, you will have turned your past challenges into a practical, step-by-step framework that guides others through their own hurdles.',
   'Your half-decade outlook features absolute alignment between your daily activities and core values. Internal friction will be fully resolved.',
   'In five years, your primary life stress will be choosing which high-value opportunity to pursue next among many good options.',
-  'Your 5-year arc sets a clear standard for those who follow you, proving that true power lies in calm composure, integrity, and quiet focus.'
+  'Your 5-year arc sets a clear standard for those who follow you, proving that true power lies in calm composure, integrity, and quiet focus.',
+
 ];
 
-// ==========================================
-// 9. GOLDEN RULES
-// ==========================================
-export const GOLDEN_RULES = [
+const GOLDEN_RULES = [
   'Never shrink yourself in rooms where your light makes insecure people squint. Find bigger rooms.',
   'Protect your morning peace as fiercely as you protect your bank account. How you treat your first hour dictates how the world treats your day.',
+  'Do not trade long-term respect for short-term peace. Speak the boundary early while it is small.',
+  'Your value is not measured by how much exhaustion you can endure. Rest is a strategic weapon.',
+  "Do not confuse urgency from others with actual importance to you. Check the source before you check the clock.",
+  "Say the uncomfortable thing early, while it's still small. Delay only makes the eventual conversation heavier.",
+  "Guard your first hour and your last hour of the day; how you open and close it shapes everything between.",
+  "Trust actions repeated over time far more than promises made once under pressure.",
+  "Let silence do some of your negotiating. Not every gap needs to be filled by you.",
+  "Choose depth with fewer people over performance for a wider audience.",
+  "Release the need to be understood by everyone; being understood by the right few is enough.",
+  "Treat every boundary you set as a data point others will use to calibrate how to treat you going forward.",
+  "Spend your best energy on your hardest, most important task first, not your easiest one.",
+  "When someone shows you who they are under pressure, believe that version over the polished one.",
   'Do not trade long-term respect for short-term peace. Speak the boundary early while it is small.',
   'Your value is not measured by how much exhaustion you can endure. Rest is a strategic weapon.',
   'Never explain yourself to people who are committed to misunderstanding you. Save your breath for building.',
@@ -1030,9 +973,6 @@ export const GOLDEN_RULES = [
   'When you feel the urge to over-explain, cut your response by half and stop speaking.'
 ];
 
-// ==========================================
-// 10. WHAT TOMORROW HOLDS POOL
-// ==========================================
 export const WHAT_TOMORROW_HOLDS_POOL = [
   'A small win finds you before the day is done, arriving without any fanfare.',
   'Someone\'s words land differently than you expect today, softening an old assumption.',
