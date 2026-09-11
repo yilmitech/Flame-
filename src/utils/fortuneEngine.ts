@@ -963,6 +963,20 @@ export const WHAT_TOMORROW_HOLDS_POOL = [
   "You will end the day with a quiet sense that you handled it well, even the messy parts.",
   
 ];
+const ZODIAC_ELEMENTS: Record<string, string> = {
+  january: 'Earth & Frozen Resolve',
+  february: 'Air & Quiet Rebellion',
+  march: 'Water & Dreaming Current',
+  april: 'Fire & First Ignition',
+  may: 'Earth & Steady Bloom',
+  june: 'Air & Dual Current',
+  july: 'Water & Deep Tide',
+  august: 'Fire & Solar Crown',
+  september: 'Earth & Harvest Precision',
+  october: 'Air & Balanced Scale',
+  november: 'Water & Hidden Depths',
+  december: 'Fire & Expansive Horizon',
+};
 
 export function generateFortuneTellerReading(
   fullNameRaw: string,
