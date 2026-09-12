@@ -113,7 +113,6 @@ export const InputHero: React.FC<InputHeroProps> = ({
   };
 
   return (
-    return (
     <div className="w-full max-w-2xl mx-auto py-6 sm:py-10 px-4">
       {/* Test Type Switcher Tabs */}
       <div className="flex items-center justify-center mb-6">
