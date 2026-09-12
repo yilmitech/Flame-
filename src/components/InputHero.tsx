@@ -113,7 +113,7 @@ export const InputHero: React.FC<InputHeroProps> = ({
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto py-6 sm:py-10 px-4">
+    <div className="sticky top-0 z-20 flex items-center justify-center mb-6 bg-[#FAF8F5]/90 backdrop-blur-sm py-3">
       {/* Test Type Switcher Tabs */}
       <div className="flex items-center justify-center mb-6">
         <div className="inline-flex p-1.5 rounded-2xl bg-[#EDE8E0] border border-[#E7E2D9] gap-1 shadow-inner max-w-full overflow-x-auto">
