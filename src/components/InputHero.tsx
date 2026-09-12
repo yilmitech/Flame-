@@ -124,13 +124,13 @@ export const InputHero: React.FC<InputHeroProps> = ({
               setError(null);
               onTabChange('flame');
             }}
-            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
               activeTab === 'flame'
-                ? 'bg-white text-rose-600 shadow-xs ring-1 ring-rose-200'
-                : 'text-stone-600 hover:text-stone-900 hover:bg-white/50'
+                ? 'bg-white text-rose-600 shadow-md ring-1 ring-rose-200 animate-bounce-once'
+                : 'bg-rose-600 text-white hover:bg-rose-700'
             }`}
           >
-            <Flame className="w-4 h-4 text-rose-600" />
+            <Flame className={`w-4 h-4 ${activeTab === 'flame' ? 'text-rose-600' : 'text-white'}`} />
             <span>FLAME Romance</span>
           </button>
 
@@ -141,17 +141,17 @@ export const InputHero: React.FC<InputHeroProps> = ({
               setError(null);
               onTabChange('fortune');
             }}
-            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
               activeTab === 'fortune'
-                ? 'bg-white text-rose-600 shadow-xs ring-1 ring-rose-200'
-                : 'text-stone-600 hover:text-stone-900 hover:bg-white/50'
+                ? 'bg-white text-rose-600 shadow-md ring-1 ring-rose-200 animate-bounce-once'
+                : 'bg-rose-600 text-white hover:bg-rose-700'
             }`}
           >
             <span className="relative flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-rose-600 animate-pulse" />
+              <Sparkles className={`w-4 h-4 animate-pulse ${activeTab === 'fortune' ? 'text-rose-600' : 'text-white'}`} />
               <span className="absolute -top-1 -right-1 flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500" />
               </span>
             </span>
             <span>Fortune Teller</span>
@@ -164,13 +164,13 @@ export const InputHero: React.FC<InputHeroProps> = ({
               setError(null);
               onTabChange('circle');
             }}
-            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
               activeTab === 'circle'
-                ? 'bg-white text-rose-600 shadow-xs ring-1 ring-rose-200'
-                : 'text-stone-600 hover:text-stone-900 hover:bg-white/50'
+                ? 'bg-white text-rose-600 shadow-md ring-1 ring-rose-200 animate-bounce-once'
+                : 'bg-rose-600 text-white hover:bg-rose-700'
             }`}
           >
-            <Users className="w-4 h-4 text-rose-600" />
+            <Users className={`w-4 h-4 ${activeTab === 'circle' ? 'text-rose-600' : 'text-white'}`} />
             <span>Circle Check</span>
           </button>
         </div>
