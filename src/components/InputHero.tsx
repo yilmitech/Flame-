@@ -141,19 +141,16 @@ export const InputHero: React.FC<InputHeroProps> = ({
               setError(null);
               onTabChange('fortune');
             }}
-            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+            className={`relative px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
               activeTab === 'fortune'
                 ? 'bg-white text-rose-600 shadow-md ring-1 ring-rose-200 animate-bounce-once'
                 : 'bg-rose-600 text-white hover:bg-rose-700'
             }`}
           >
-            <span className="relative flex items-center justify-center">
-              <Sparkles className={`w-4 h-4 animate-pulse ${activeTab === 'fortune' ? 'text-rose-600' : 'text-white'}`} />
-              <span className="absolute -top-1 -right-1 flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500" />
-              </span>
+            <span className="absolute -top-2 -right-1.5 px-1.5 py-0.5 rounded-full bg-amber-400 text-[9px] font-extrabold text-stone-900 leading-none shadow-sm">
+              NEW
             </span>
+            <Sparkles className={`w-4 h-4 animate-pulse ${activeTab === 'fortune' ? 'text-rose-600' : 'text-white'}`} />
             <span>Fortune Teller</span>
           </button>
 
@@ -164,12 +161,15 @@ export const InputHero: React.FC<InputHeroProps> = ({
               setError(null);
               onTabChange('circle');
             }}
-            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+            className={`relative px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
               activeTab === 'circle'
                 ? 'bg-white text-rose-600 shadow-md ring-1 ring-rose-200 animate-bounce-once'
                 : 'bg-rose-600 text-white hover:bg-rose-700'
             }`}
           >
+            <span className="absolute -top-2 -right-1.5 px-1.5 py-0.5 rounded-full bg-amber-400 text-[9px] font-extrabold text-stone-900 leading-none shadow-sm">
+              NEW
+            </span>
             <Users className={`w-4 h-4 ${activeTab === 'circle' ? 'text-rose-600' : 'text-white'}`} />
             <span>Circle Check</span>
           </button>
