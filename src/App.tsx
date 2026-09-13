@@ -10,6 +10,9 @@ import { AnyReadingResult, BirthMonth, CircleRelationshipType, PaystackConfig, T
 import { generateCompatibility } from './utils/compatibilityEngine';
 import { generateFortuneTeller } from './utils/fortuneEngine';
 import { generateCircleCheck } from './utils/circleEngine';
+import { InstallPromptModal } from './components/InstallPromptModal';
+// ...
+<InstallPromptModal />
 
 const STORAGE_KEY_UNLOCKED = 'flame_unlocked_readings';
 const STORAGE_KEY_PAYSTACK = 'flame_paystack_config';
