@@ -435,12 +435,14 @@ export const FreeResultView: React.FC<FreeResultViewProps> = ({
       </div>
 
       {/* BLURRED / LOCKED TEASER SECTIONS */}
-      <div className="space-y-4 pt-4">
-        <h4 className="text-xs font-bold uppercase tracking-wider text-stone-500 text-center">
-          What is waiting in your full report:
-        </h4>
+     <div className="space-y-4 pt-4">
+  <div className="flex justify-center">
+    <h4 className="inline-flex items-center px-4 py-1.5 rounded-full bg-rose-600 text-[11px] font-bold uppercase tracking-wider text-white shadow-xs">
+      What is waiting in your full report
+    </h4>
+  </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {result.testType === 'fortune' ? (
             <>
               <div className="relative p-5 rounded-xl bg-white border border-[#E7E2D9] shadow-xs overflow-hidden">
