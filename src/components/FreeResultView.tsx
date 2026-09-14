@@ -219,7 +219,8 @@ export const FreeResultView: React.FC<FreeResultViewProps> = ({
     <span>Share My Fortune Card</span>
   </button>
 </div>
-
+</div>
+</div>        
       {/* THE PAYWALL CARD */}
       <div className="relative p-6 sm:p-8 rounded-2xl bg-white border border-[#E7E2D9] shadow-sm overflow-hidden">
        
