@@ -238,9 +238,9 @@ export const FreeResultView: React.FC<FreeResultViewProps> = ({
                   : 'Full Relationship Forensic Report'}
               </span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-stone-900 font-editorial leading-tight">
-              {result.anxietyHook}
-            </h3>
+          <h3 className="text-2xl sm:text-3xl font-bold text-rose-700 font-editorial leading-tight">
+          {result.anxietyHook}
+          </h3>
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
               {result.testType === 'fortune'
                 ? 'Unlock what is holding you back, what is arriving over the next 3 months, your secret hidden advantage, and your multi-year legacy.'
