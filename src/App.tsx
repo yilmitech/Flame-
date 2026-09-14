@@ -18,7 +18,7 @@ const STORAGE_KEY_UNLOCKED = 'flame_unlocked_readings';
 const STORAGE_KEY_PAYSTACK = 'flame_paystack_config';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<TestType>('flame');
+  const [activeTab, setActiveTab] = useState<TestType>('fortune');
   const [result, setResult] = useState<AnyReadingResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
